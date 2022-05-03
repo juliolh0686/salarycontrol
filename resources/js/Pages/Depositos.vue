@@ -12,31 +12,25 @@ import Welcome from '@/Jetstream/Welcome.vue';
     </template>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-          <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-              <div>  
-                <div>
-                <div>
-                <select class="form-control" v-model="tipoarchivo">
-                    <option disabled value="">Seleccionar</option>
-                    <option value="a" :key="tipoarchivo">Continua</option>
-                    <option value="b" :key="tipoarchivo">Ocasional</option>
-                    <option value="c" :key="tipoarchivo">complementaria</option>
-                    </select>
-                </div>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex">
+          <div div class="inline-block relative w-64">
+            <select class="mx-2 block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" v-model="tipoarchivo">
+              <option disabled value="">Seleccionar</option>
+              <option value="a" :key="tipoarchivo">Continua</option>
+              <option value="b" :key="tipoarchivo">Ocasional</option>
+              <option value="c" :key="tipoarchivo">complementaria</option>
+            </select>
+          </div>
 
-                <div class="form-group col-md-6">
-                <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
-                </div>
-                <div class="form-group col-md-3">
-                <button class="button-importar" v-on:click="submitFile()">Importar</button>
-                </div>
-
-                </div>
-
-            </div>
+          <div class="mx-2">
+            <input type="file" id="file" ref="file" v-on:change="handleFileUpload()"/>
+          </div>
+          <div class="mx-2">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded" v-on:click="submitFile()">Importar</button>
           </div>
         </div>
+      </div>
     </div>
   </AppLayout>
 </template>
