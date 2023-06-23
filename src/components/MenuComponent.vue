@@ -155,7 +155,7 @@ onMounted(() => {
   font-size: 45px;
   position:fixed;
   left: 250px;
-  color: #1d1b31;
+  color: #222E3C;
   cursor: pointer;
   float: right;
   transition: all 0.4s ease;
@@ -171,10 +171,10 @@ onMounted(() => {
   left: 0; */
   height: 100vh;
   width: 260px;
-  background: #1d1b31;
+  background: #222E3C;
   /* z-index: 100; */
   transition: all 0.5s ease;
-  color: #E4E9F7;
+  color: #959699;
 }
 
 .nav-links {
@@ -274,7 +274,7 @@ onMounted(() => {
 .sidebar .nav-links li a .link_name{
   font-size: 18px;
   font-weight: 400;
-  color: #fff;
+  color: #8a8484;
   transition: all 0.4s ease;
 }
 .sidebar.close .nav-links li a .link_name{
