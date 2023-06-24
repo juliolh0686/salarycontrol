@@ -1,5 +1,5 @@
 <template>
-<div class="sidebar" :class="{close:isClose}">
+  <div class="sidebar" :class="{close:isClose}">
     <div class="logo-details">
       <i class='bx bxl-c-plus-plus'></i>
       <span class="logo_name">Salary Control</span>
@@ -54,58 +54,8 @@
           <li><a class="link_name" href="#">Analytics</a></li>
         </ul>
       </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-line-chart' ></i>
-          <span class="link_name">Chart</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Chart</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
-            <i class='bx bx-plug' ></i>
-            <span class="link_name">Plugins</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Plugins</a></li>
-          <li><a href="#">UI Face</a></li>
-          <li><a href="#">Pigments</a></li>
-          <li><a href="#">Box Icons</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-compass' ></i>
-          <span class="link_name">Explore</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Explore</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-history'></i>
-          <span class="link_name">History</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">History</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">
-          <i class='bx bx-cog' ></i>
-          <span class="link_name">Setting</span>
-        </a>
-        <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Setting</a></li>
-        </ul>
-      </li>
-      <li>
+
+    <li>
     <div class="profile-details">
       <div class="profile-content">
         <img src="../assets/img/profile.jpg" alt="profileImg">
@@ -149,13 +99,13 @@ onMounted(() => {
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 
 .sidebar .logo-details .bx-menu {
   font-size: 45px;
   position:fixed;
   left: 250px;
-  color: #222E3C;
+  color: $primaryColor;
   cursor: pointer;
   float: right;
   transition: all 0.4s ease;
@@ -171,10 +121,10 @@ onMounted(() => {
   left: 0; */
   height: 100vh;
   width: 260px;
-  background: #222E3C;
+  background: $primaryColor;
   /* z-index: 100; */
   transition: all 0.5s ease;
-  color: #959699;
+  color: rgba(233,236,239,.5);
 }
 
 .nav-links {
@@ -239,7 +189,9 @@ onMounted(() => {
   transition: all 0.4s ease;
 }
 .sidebar .nav-links li:hover{
-  background: #1d1b31;
+  background: linear-gradient(90deg,rgba(59,125,221,.1),rgba(59,125,221,.088) 50%,transparent);
+  border-right-color: #3b7ddd;
+  color: #e9ecef;
 }
 .sidebar .nav-links li .iocn-link{
   display: flex;
@@ -254,8 +206,8 @@ onMounted(() => {
   min-width: 78px;
   text-align: center;
   line-height: 50px;
-  color: #fff;
-  font-size: 20px;
+  color: rgba(233,236,239,.5);
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -272,7 +224,7 @@ onMounted(() => {
   text-decoration: none;
 }
 .sidebar .nav-links li a .link_name{
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 400;
   color: #8a8484;
   transition: all 0.4s ease;
