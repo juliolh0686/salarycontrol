@@ -4,6 +4,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import HomeView from '@/views/HomeView.vue'
 import MainView from '@/views/MainView.vue'
 import PlanillasView from '@/views/PlanillasView.vue'
+import ImportacionView from '@/views/ImportacionView.vue'
 import useAuth from '@/store/auth'
 
 
@@ -46,6 +47,14 @@ const router = createRouter({
       path: '/planillas',
       name: 'planillas',
       component: PlanillasView,
+      meta: {
+        requireAuth: false
+      }
+    },
+    {
+      path: '/importacion',
+      name: 'importacion',
+      component: ImportacionView,
       meta: {
         requireAuth: false
       }

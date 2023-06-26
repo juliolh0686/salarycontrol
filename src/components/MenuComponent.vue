@@ -12,7 +12,16 @@
           <RouterLink to="/planillas"><span class="link_name">Dashboard</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Category</a></li>
+          <li><RouterLink class="link_name" to="/planillas">Dashboard</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <RouterLink to="/importacion"><span class="link_name">Importación</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink to="/importacion" class="link_name">Importación</RouterLink></li>
         </ul>
       </li>
       <li>

@@ -46,7 +46,9 @@ import { ref } from 'vue';
 }
 
 .navbar-central {
+  margin: 30px;
   padding: 50px;
+  background-color: #fff;
 }
 
 .navbar{
