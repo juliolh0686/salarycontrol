@@ -6,10 +6,27 @@ class ImportService {
     
    }
 
-async fetchfile(email:string) {
+async fetchfile(file:File) {
+
+  let formData = new FormData();
+  formData.append('file',file);
+
     let store = useAuth()
     const url = store.baseURL+'/detalleplanilla/import149'
-    return url
+    
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      body: formData,
+    })
+
+    const response = await rawResponse.json();
+
+    if(response.status == false) {
+      return false
+    }else {
+      return true
+    }
+
   }
 
 }
