@@ -22,6 +22,7 @@ async fetchfile(file:File) {
     const response = await rawResponse.json();
 
     if(response.status == false) {
+      alert(response.message)
       return false
     }else {
       return true

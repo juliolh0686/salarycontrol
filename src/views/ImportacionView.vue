@@ -38,7 +38,7 @@
     const response = await store.fetchfile(file.value);
 
     if (response == false) {
-      console.log("login error")
+      console.log("Error en carga")
     } else {
       console.log("Satisfactorio")
     }

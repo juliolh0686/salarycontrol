@@ -4,7 +4,7 @@ const useAuth = defineStore('auth', {
   state: () => {
     return {
       token : null,
-      baseURL: 'http://salarycontrolapi.test/api',
+      baseURL: 'http://salarycontrolapi.test:8080/api',
     }
   },
   actions: {
