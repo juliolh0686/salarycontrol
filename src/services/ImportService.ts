@@ -6,10 +6,11 @@ class ImportService {
     
    }
 
-async fetchfile(file:File) {
+async fetchfile(file:File,tipocarga:string) {
 
   let formData = new FormData();
   formData.append('file',file);
+  formData.append('tipocarga',tipocarga)
 
     let store = useAuth()
     const url = store.baseURL+'/detalleplanilla/import149'
@@ -25,6 +26,7 @@ async fetchfile(file:File) {
       alert(response.message)
       return false
     }else {
+      alert(response.res)
       return true
     }
 

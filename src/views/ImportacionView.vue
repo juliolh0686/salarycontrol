@@ -1,11 +1,11 @@
 <template>
   <div class="content-import">
     <div class="import-149">
-      <select class="form-control">
+      <select class="form-control" v-model="tipocarga">
         <option disabled value="">Seleccionar</option>
-        <option value="a">Continua</option>
-        <option value="b">Ocasional</option>
-        <option value="c">complementaria</option>
+        <option value="continua">Continua</option>
+        <option value="ocasional">Ocasional</option>
+        <option value="complementaria">complementaria</option>
       </select>
     </div>
     <input type="file" id="file" name="file" ref="fileInput" @change="handleFileUpload()"/>
@@ -20,9 +20,10 @@
   import useAuth from "@/store/auth"
 
   const fileInput = ref<HTMLInputElement | null>(null);
-  const files = ref();
+  const files = ref()
   const file = ref()
   const store = new ImportService()
+  let tipocarga = ref('')
 
   const handleFileUpload = () => {
     files.value = fileInput.value?.files
@@ -35,7 +36,7 @@
 
   const submitFile = async() => {
     
-    const response = await store.fetchfile(file.value);
+    const response = await store.fetchfile(file.value,tipocarga.value);
 
     if (response == false) {
       console.log("Error en carga")
