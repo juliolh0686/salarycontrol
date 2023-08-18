@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import MenuComponent from './components/MenuComponent.vue';
-import { useRoute } from 'vue-router'
-const route = useRoute()
-
-import { ref } from 'vue';
+  import { ref } from 'vue';
+  import { RouterLink, RouterView } from 'vue-router'
+  import MenuComponent from './components/MenuComponent.vue';
+  import { useRoute } from 'vue-router'
   import useAuth from '@/store/auth';
   import router from '@/router';
+
+  const route = useRoute()
 
   const store = useAuth();
   const feedback = ref('')

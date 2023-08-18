@@ -5,6 +5,8 @@ import HomeView from '@/views/HomeView.vue'
 import MainView from '@/views/MainView.vue'
 import PlanillasView from '@/views/PlanillasView.vue'
 import ImportacionView from '@/views/ImportacionView.vue'
+import DashboardView from '@/views/DashboardView.vue'
+import NoabonosView from '@/views/NoabonosView.vue'
 import useAuth from '@/store/auth'
 
 
@@ -38,7 +40,7 @@ const router = createRouter({
     {
       path: '/main',
       name: 'main',
-      component: MainView,
+      component: DashboardView,
       meta: {
         requireAuth: false
       }
@@ -55,6 +57,14 @@ const router = createRouter({
       path: '/importacion',
       name: 'importacion',
       component: ImportacionView,
+      meta: {
+        requireAuth: false
+      }
+    },
+    {
+      path: '/noabonos',
+      name: 'noabonos',
+      component: NoabonosView,
       meta: {
         requireAuth: false
       }

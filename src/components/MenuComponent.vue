@@ -9,10 +9,19 @@
       <li>
         <a href="#">
           <i class='bx bx-grid-alt' ></i>
-          <RouterLink to="/planillas"><span class="link_name">Dashboard</span></RouterLink>
+          <RouterLink to="/main"><span class="link_name">Dashboard</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
-          <li><RouterLink class="link_name" to="/planillas">Dashboard</RouterLink></li>
+          <li><RouterLink class="link_name" to="/main">Dashboard</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt'></i>
+          <RouterLink to="/planillas"><span class="link_name">Planillas</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink to="/planillas" class="link_name">Planillas</RouterLink></li>
         </ul>
       </li>
       <li>
@@ -22,6 +31,15 @@
         </a>
         <ul class="sub-menu blank">
           <li><RouterLink to="/importacion" class="link_name">Importación</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <RouterLink to="/noabonos"><span class="link_name">No Abonos</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink to="/noabonos" class="link_name">No Abonos</RouterLink></li>
         </ul>
       </li>
       <li>
@@ -82,29 +100,30 @@
 
 <script setup lang="ts">
 
-import { ref , onMounted} from 'vue'
+  import { ref , onMounted} from 'vue'
 
-let isClose:boolean = ref(true)
+  let isClose = ref(true)
 
-let toggle = () => {
-  if (!isClose.value) {
-    isClose.value = true;
-  } else {
-    isClose.value = false;
+  let toggle = () => {
+    if (!isClose.value) {
+      isClose.value = true;
+    } else {
+      isClose.value = false;
+    }
   }
-}
 
-onMounted(() => {
-  let arrow = document.querySelectorAll(".arrow");
+  onMounted(() => {
+    
+    let arrow = document.querySelectorAll(".arrow");
+    for (var i = 0; i < arrow.length; i++) {
+      arrow[i].addEventListener("click", (e)=>{
+        let arrowParent = e.target as HTMLIFrameElement
+        let arrowParentfin = arrowParent.parentElement?.parentElement as HTMLUListElement
+        arrowParentfin.classList.toggle("showMenu")
+      });
+    }
 
-  for (var i = 0; i < arrow.length; i++) {
-  arrow[i].addEventListener("click", (e)=>{
- let arrowParent = e.target.parentElement.parentElement;//selecting main parent of arrow
- arrowParent.classList.toggle("showMenu");
-  });
-}
-
-})
+  })
 
 </script>
 
