@@ -1,77 +1,82 @@
 <template>
   <div>
-    <h1>No Abonos</h1>
-    <form action="">
-      <label>DNI:</label>
-      <input type="text">
-      <button>Buscar</button>
-    </form>
+    <div class="titulo-central">No Abonos</div>
+    <div class="container-from-search">
+      <div>
+        <label>DNI:</label>
+      </div>
+      <div>
+        <input type="text" v-model="numDocumento">
+      </div>
+      <div>
+        <button class="btnj btnj-primary" @click="getsearchNoabono(numDocumento)">Buscar</button>
+      </div>
+      <div>
+        <button class="btnj btnj-secundary" @click="generarPDF()">PDF</button>
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
-          <th>Nº</th>
-          <th>Periodo</th>
-          <th>Monto Bruto</th>
+          <th>Cod_Personal</th>
+          <th>Apellido paterno</th>
+          <th>Apellido Materno</th>
+          <th>Nombres</th>
+          <th>Num_Documento</th>
+          <th>Cod_Reg</th>
+          <th>Cargo</th>
+          <th>Bruto</th>
+          <th>Afecto</th>
           <th>Descuentos</th>
-          <th>liquido</th>
+          <th>Liquido</th>
           <th>Aportes</th>
-          <th>Descripción</th>
-          <th>Estado</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>202307</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>Planilla desl mes de Julio 2023</td>
-          <td>Activo</td>
-          <td> <button class="btn btn-primary">Editar</button><button class="btn btn-primary">Eliminar</button> </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>202307</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>Planilla desl mes de Julio 2023</td>
-          <td>Activo</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>202307</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>12012.20</td>
-          <td>Planilla desl mes de Julio 2023</td>
-          <td>Activo</td>
+        <tr v-for="personal in lista_personal" :key="personal.p_id">
+          <td> {{ personal.p_id }} </td>
+          <td> {{ personal.p_a_paterno }} </td>
+          <td>{{ personal.p_a_materno }}</td>
+          <td>{{ personal.p_nombres }}</td>
+          <td>{{ personal.p_num_doc }}</td>
+          <td>{{ personal.dp_cod_cargo }}</td>
+          <td>{{ personal.cargo_car_id }}</td>
+          <td>{{ personal.dp_bruto }}</td>
+          <td>{{ personal.dp_afecto }}</td>
+          <td>{{ personal.dp_desc }}</td>
+          <td>{{ personal.dp_liquido }}</td>
+          <td>{{ personal.dp_essalud }}</td>
+          <td>
+            <template v-if="personal.dp_noabono">
+              <button class="btnj btnj-alert" @click="abrirModal('remove',personal)"><i class='bx bxs-user-minus'></i></button>
+            </template>
+            <template v-else>
+              <button class="btnj btnj-secundary" @click="abrirModal('add',personal)"><i class='bx bxs-user-plus' ></i></button>
+            </template>
+          </td>
+          
         </tr>
       </tbody>
     </table>
   </div>
 
-  <button id="openModalBtn" @click="Abrirmodal">Abril Modal</button>
-
   <div id="myModal" class="modal">
-    <div class="modal-content">
+    <div class="modal-content ancho-ventana50">
       <div class="modal-header">
         <span class="close" @click="cerrarmodal">&times;</span>
-        <h2>Formulario</h2>
+        <h2>{{tituloModal}}</h2>
       </div>
       <div class="modal-body">
-        <input type="text" placeholder="Nombre">
-        <input type="email" placeholder="Correo Electronico">
-        <input type="password" placeholder="Contraseña">
+        <div class="group-01">
+          <label for="" class="label">Motivo</label>
+          <input type="text" class="form-control" id="" placeholder="Ingresar Motivo" v-model="dp_motivo_na">
+        </div>
       </div>
       <div class="modal-footer">
-        <button id="submitBtn" class="btj">Enviar</button>
-        <button class="close" @click="cerrarmodal">Cerrar</button>
+        <button class="btnj btnj-primary" @click="cerrarmodal">Cerrar</button>
+        <button type="button" v-if="tipoAccion==1" class="btnj btnj-primary" @click="addNoabono()">Registrar</button>
+        <button type="button" v-if="tipoAccion==2" class="btnj btnj-primary" @click="removeNoabono()">Retirar</button>
       </div>
     </div>
   </div>
@@ -79,108 +84,99 @@
 
 <style lang="scss" scoped>
 
-table {
-  //table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-size: 14px;
-  color: #6c757d;
+.bx {
+  font-size: 20px;
+  color: white;
 }
 
-table thead tr {
-  height: 30px;
+.container-from-search {
+  display: flex;
+  align-items: center;
 }
-
-table tbody tr {
-  height: 30px;
-  border-bottom: 1px solid rgb(61, 63, 65);
-}
-
-thead {
-  background-color: $primaryColor;
-  color: #FFF;
-}
-
-
-// FORMULARIO MODAL
-.modal {
-  //display: none;
-  position: fixed;
-  z-index: 10;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.modal.active {
-  //display: block;
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-content {
-  background-color: white;
-  margin: 15% auto;
-  padding: 10px;
-  border: 1px solid #888;
-  width: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-}
-
-.modal-header {
-  padding: 10px;
-  background-color: #f2f2f2;
-}
-
-.modal-body {
-  padding: 20px;
-}
-
-.modal-footer {
-  padding: 10px;
-  background-color: #f2f2f2;
-  text-align: right;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btj {
-  
-}
-
-
 
 </style>
 
 <script setup lang="ts">
-  import {ref, onMounted} from 'vue'
+  import {ref } from 'vue'
+  import NoabonoService from '@/services/NoabonoService'
+  import NoabonoPdfService from '@/services/NoabonoPdfService'
+
+  let numDocumento = ref('')
+  let lista_personal = ref({})
+  let tituloModal = ref()
+  let dp_motivo_na = ref()
+  let tipoAccion = ref(0)
+  let dp_id = ref(0)
+
+  const getsearchNoabono = async(numDocumento:string) => {
+
+    lista_personal.value = {};
+
+    const response = await NoabonoService.searchNoabono(numDocumento);
+
+    if (response.status == false) {
+      alert(response.message)
+    } else {
+      lista_personal.value = response.personal
+    }
+
+  }
+
 
   const cerrarmodal = () => {
     const modal = document.getElementById("myModal") as HTMLDivElement;
     modal.classList.remove("active")
   }
 
-  const Abrirmodal = () => {
+  const abrirModal = (tipo:string, data=[]) => {
+
+    switch(tipo) {
+      case 'add':
+        {
+          tituloModal.value='Agregar No Abonos'
+          dp_motivo_na.value = data['dp_motivo_na']
+          dp_id.value = data['dp_id']
+          tipoAccion.value=1
+          break
+        }
+      case 'remove':
+        {
+          tituloModal.value='Retirar No Abonos'
+          dp_motivo_na.value = data['dp_motivo_na']
+          dp_id.value = data['dp_id']
+          tipoAccion.value=2
+          break
+        }
+    }
+
     const modal = document.getElementById("myModal") as HTMLDivElement;
     modal.classList.add("active")
+  }
+
+  const addNoabono = async() => {
+    const response = await NoabonoService.addNoabono(dp_id.value,dp_motivo_na.value);
+    if (response.status == false) {
+      alert(response.message)
+    } else {
+      alert('procesado')
+      cerrarmodal()
+      getsearchNoabono(numDocumento.value)
+    }
+  }
+
+  const removeNoabono = async() => {
+    const response = await NoabonoService.removeNoabono(dp_id.value);
+    if (response.status == false) {
+      alert(response.message)
+    } else {
+      alert('procesado')
+      cerrarmodal()
+      getsearchNoabono(numDocumento.value)
+    }
+  }
+
+  const generarPDF = async() => {
+    const response = await NoabonoPdfService();
   }
 
 </script>

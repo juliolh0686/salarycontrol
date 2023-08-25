@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h1>Listado de Planillas</h1>
+    <h1>Planillas</h1>
+    <form action="">
+      <label>DNI:</label>
+      <input type="text">
+      <button>Buscar</button>
+    </form>
     <table>
       <thead>
         <tr>
@@ -25,7 +30,7 @@
           <td>12012.20</td>
           <td>Planilla desl mes de Julio 2023</td>
           <td>Activo</td>
-          <td> <button class="btn btn-primary">f</button> </td>
+          <td> <button class="btn btn-primary">Editar</button><button class="btn btn-primary">Eliminar</button> </td>
         </tr>
         <tr>
           <td>2</td>
@@ -50,32 +55,49 @@
       </tbody>
     </table>
   </div>
+
+  <button id="openModalBtn" @click="Abrirmodal">Abril Modal</button>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content ancho-ventana30">
+      <div class="modal-header">
+        <span class="close" @click="cerrarmodal">&times;</span>
+        <h2>Formulario</h2>
+      </div>
+      <div class="modal-body">
+        <div class="group-01">
+          <label for="" class="label">Periodo</label>
+          <input type="text" class="form-control" id="" placeholder="Ingresar Periodo">
+        </div>
+        <div class="group-01">
+          <label for="" class="label">Descripción de Planilla</label>
+          <input type="email" placeholder="Correo Electronico">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="submitBtn" class="btnj btnj-primary">Enviar</button>
+        <button class="btnj btnj-primary" @click="cerrarmodal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
 
-table {
-  //table-layout: fixed;
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  font-size: 14px;
-  color: #6c757d;
-}
-
-table thead tr {
-  height: 30px;
-}
-
-table tbody tr {
-  height: 30px;
-  border-bottom: 1px solid rgb(61, 63, 65);
-}
-
-thead {
-  background-color: $primaryColor;
-  color: #FFF;
-}
-
 
 </style>
+
+<script setup lang="ts">
+  import {ref, onMounted} from 'vue'
+
+  const cerrarmodal = () => {
+    const modal = document.getElementById("myModal") as HTMLDivElement;
+    modal.classList.remove("active")
+  }
+
+  const Abrirmodal = () => {
+    const modal = document.getElementById("myModal") as HTMLDivElement;
+    modal.classList.add("active")
+  }
+
+</script>

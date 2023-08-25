@@ -17,7 +17,7 @@
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-grid-alt'></i>
+          <i class='bx bx-calculator' ></i>
           <RouterLink to="/planillas"><span class="link_name">Planillas</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
@@ -26,7 +26,7 @@
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-grid-alt' ></i>
+          <i class='bx bx-import' ></i>
           <RouterLink to="/importacion"><span class="link_name">Importación</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
@@ -35,7 +35,7 @@
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-grid-alt' ></i>
+          <i class='bx bx-street-view'></i>
           <RouterLink to="/noabonos"><span class="link_name">No Abonos</span></RouterLink>
         </a>
         <ul class="sub-menu blank">

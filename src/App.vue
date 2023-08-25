@@ -47,7 +47,7 @@
 
 .navbar-central {
   margin: 30px;
-  padding: 50px;
+  padding: 20px 40px;
   background-color: #fff;
 }
 
