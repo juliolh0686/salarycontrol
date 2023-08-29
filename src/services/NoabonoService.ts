@@ -62,6 +62,42 @@ export default {
 
     return response;
 
-  }
+  },
+
+  async periodosNoabono() {
+
+    let store = useAuth()
+    const url = store.baseURL+'/noabonos/periodosnoabono/'
+
+    const rawResponse = await fetch(url, {
+      method: 'POST'
+    })
+
+    const response = await rawResponse.json();
+
+    return response;
+
+  },
+
+   //Busqueda por periodo no abono
+   async mostrarNoabono(pll_id:number) {
+
+    let formData = new FormData()
+    formData.append('pll_id',pll_id.toString())
+
+    let store = useAuth();
+  
+    const url = store.baseURL+'/noabonos/mostrarnoabono/'
+  
+    const rawResponse = await fetch(url, {
+      method: 'POST',
+      body: formData
+    })
+  
+    const response = await rawResponse.json();
+  
+    return response;
+  
+  },
 
 }

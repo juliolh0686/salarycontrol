@@ -7,6 +7,7 @@ import PlanillasView from '@/views/PlanillasView.vue'
 import ImportacionView from '@/views/ImportacionView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import NoabonosView from '@/views/NoabonosView.vue'
+import RepnoabonosView from '@/views/RepnoabonosView.vue'
 import useAuth from '@/store/auth'
 
 
@@ -65,6 +66,14 @@ const router = createRouter({
       path: '/noabonos',
       name: 'noabonos',
       component: NoabonosView,
+      meta: {
+        requireAuth: false
+      }
+    },
+    {
+      path: '/repnoabonos',
+      name: 'repnoabonos',
+      component: RepnoabonosView,
       meta: {
         requireAuth: false
       }

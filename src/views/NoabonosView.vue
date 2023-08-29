@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="titulo-central">No Abonos</div>
+    <div class="titulo-central">No Abonos - Registro</div>
     <div class="container-from-search">
       <div>
         <label>DNI:</label>
@@ -121,7 +121,6 @@
     }
 
   }
-
 
   const cerrarmodal = () => {
     const modal = document.getElementById("myModal") as HTMLDivElement;

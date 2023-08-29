@@ -34,12 +34,17 @@
         </ul>
       </li>
       <li>
-        <a href="#">
-          <i class='bx bx-street-view'></i>
-          <RouterLink to="/noabonos"><span class="link_name">No Abonos</span></RouterLink>
-        </a>
-        <ul class="sub-menu blank">
-          <li><RouterLink to="/noabonos" class="link_name">No Abonos</RouterLink></li>
+        <div class="iocn-link">
+          <a href="#">
+            <i class='bx bx-street-view'></i>
+            <span class="link_name">No Abonos</span>
+          </a>
+          <i class='bx bxs-chevron-down arrow' ></i>
+        </div>
+        <ul class="sub-menu">
+          <li><a class="link_name" href="#">No Abonos</a></li>
+          <li><RouterLink to="/noabonos">Registro</RouterLink></li>
+          <li><RouterLink to="/repnoabonos">Reportes</RouterLink></li>
         </ul>
       </li>
       <li>
