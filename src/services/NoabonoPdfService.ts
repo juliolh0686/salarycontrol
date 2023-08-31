@@ -23,9 +23,14 @@ import useAuth from "@/store/auth";
     let dataConceptos = response.dataConceptos
 
     let encabezadoDescuentos = []
+    let totalbruto = 0;
+    let totalafecto = 0;
+    let totaldescuentos = 0;
+    let totalliquido = 0;
+    let totalessalud = 0;
 
-    for(let i =0;i<dataConceptos.length;i++) {
-      encabezadoDescuentos.push(dataConceptos[i].con_concepto+':'+dataConceptos[i].con_nombre)
+    for (const item in dataConceptos) {
+      encabezadoDescuentos.push(dataConceptos[item].con_concepto+' '+dataConceptos[item].con_nombre)
     }
 
     //NUMERO DE CONCEPTOS CONSIDERADOS
@@ -36,12 +41,9 @@ import useAuth from "@/store/auth";
 
     let data = []
 
-    console.log(dataConceptos)
-    console.log(noAbonos)
-
     for (const item in noAbonos){
       let dataobjeto = []
-      dataobjeto.push(item+1)
+      dataobjeto.push(parseInt(item)+1)
       dataobjeto.push(noAbonos[item].establecimiento_est_id)
       dataobjeto.push(noAbonos[item].p_num_doc)
       dataobjeto.push(noAbonos[item].p_a_paterno)
@@ -75,23 +77,16 @@ import useAuth from "@/store/auth";
       dataobjeto.push(noAbonos[item].dp_motivo_na)
 
       data.push(dataobjeto)
-      //console.log(noAbonos[item].dp_cod_nexus)
+  
+      totalbruto = totalbruto+parseFloat(noAbonos[item].dp_bruto)
+      totalafecto = totalafecto+parseFloat(noAbonos[item].dp_afecto)
+      totaldescuentos = totaldescuentos+parseFloat(noAbonos[item].dp_desc)
+      totalliquido = totalliquido+parseFloat(noAbonos[item].dp_liquido)
+      totalessalud = totalessalud+parseFloat(noAbonos[item].dp_essalud)
     }
 
-    console.log(data)
-
-    // for(let i =0;i<noAbonos.length;i++) {
-    //   console.log(noAbonos[i].dp_cuenta)
-    // }
-
-    //return('')
-
     // Default export is a4 paper, portrait, using millimeters for units
-    const doc = new jsPDF("landscape");
-  
-    // It can parse html:
-    // <table id="my-table"><!-- ... --></table>
-    //autoTable(doc, { html: '#my-table' })
+    const doc = new jsPDF('l');
 
     let dataEncabezado = [
       {content:'N°',rowSpan:2},
@@ -110,23 +105,197 @@ import useAuth from "@/store/auth";
       {content:'ESSALUD',rowSpan:2},
       {content:'MOTIVO',rowSpan:2},
     ]
-    
-    // let data = [
-    //   [1,'0H032120', '08226648', 'ZOLEddZZI','LOPddEZ','CARLA MARdddIA','EBR Nivel Primaria','DOCENTE NOMBRADO',3135.00,2037.85,21.45,21.45,21.45,21.45,21.45,21.45,21.45,21.45,303.71,2831.29,183.40,'195652-23 LSG 317al2809'],
-    //     [2,'0H032120', '08226648', 'ZOLEddZZI','LOPddEZ','CARLA MARdddIA','EBR Nivel Primaria','DOCENTE NOMBRADO',3135.00,2037.85,21.45,21.45,21.45,21.45,21.45,21.45,21.45,21.45,303.71,2831.29,183.40,'195652-23 LSG 317al2809'],
-    //     [3,'0H032120', '08226648', 'ZOLEddZZI','LOPddEZ','CARLA MARdddIA','EBR Nivel Primaria','DOCENTE NOMBRADO',3135.00,2037.85,21.45,21.45,21.45,21.45,21.45,21.45,21.45,21.45,303.71,2831.29,183.40,'195652-23 LSG 317al2809'],
-    //     [4,'0H032120', '08226648', 'ZOLEddZZI','LOPddEZ','CARLA MARdddIA','EBR Nivel Primaria','DOCENTE NOMBRADO',3135.00,2037.85,21.45,21.45,21.45,21.45,21.45,21.45,21.45,21.45,303.71,2831.29,183.40,'195652-23 LSG 317al2809'],
-    // ]
 
+    let dataFoot = [
+      ['TOTAL','','','','','','','',totalbruto.toFixed(2),totalafecto.toFixed(2)]
+    ]
 
+    for (const item in dataConceptos) {
+      dataFoot[0].push(dataConceptos[item].monto)
+    }
+
+    dataFoot[0].push(totaldescuentos.toFixed(2))
+    dataFoot[0].push(totalliquido.toFixed(2))
+    dataFoot[0].push(totalessalud.toFixed(2))
+  
     // Or use javascript directly:
     autoTable(doc, {
-      styles: { fontSize: 5 , lineColor: [5, 5, 5],halign: 'center',valign: 'middle'},
-      headStyles: {fillColor: [0, 140, 186],lineWidth:0.1,lineColor:[170, 170, 170]},
-      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170]},
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       head: [ dataEncabezado, encabezadoDescuentos],
       body: data,
+      foot: dataFoot,
     })
+
+    doc.addPage("l");
+
+    alert(doc.internal.pageSize.width-30)
+    //let pageWidth = doc.internal.pageSize.width
+    let tableWidth = (doc.internal.pageSize.width - 40)/4
+
+    let dataEncabezadorem = ['Clasificador','Meta','Bruto','Descuentos','Liquido']
+
+    let noAbonosrem = response.dataRemuneracion
+
+    let dataRem = []
+    let brutototalrem = 0
+    let descuentototalrem = 0
+    let restatotalrem = 0
+
+    for(const item in noAbonosrem) {
+      let dataobjetorem = []
+      dataobjetorem.push(noAbonosrem[item].cl_clasificador)
+      dataobjetorem.push(noAbonosrem[item].sf_secuencia_funcional)
+      dataobjetorem.push(noAbonosrem[item].m_bruto)
+      dataobjetorem.push(noAbonosrem[item].descuentos)
+      dataobjetorem.push(noAbonosrem[item].resta)
+
+      dataRem.push(dataobjetorem)
+
+      brutototalrem = brutototalrem + parseFloat(noAbonosrem[item].m_bruto)
+      descuentototalrem = descuentototalrem + parseFloat(noAbonosrem[item].descuentos)
+      restatotalrem = restatotalrem + parseFloat(noAbonosrem[item].resta)
+    }
+
+    let dataFootrem = [
+      ['TOTAL','']
+    ]
+
+    dataFootrem[0].push(brutototalrem.toFixed(2))
+    dataFootrem[0].push(descuentototalrem.toFixed(2))
+    dataFootrem[0].push(restatotalrem.toFixed(2))
+
+
+    autoTable(doc, {
+      startY:20,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      tableWidth: tableWidth,
+      head: [ dataEncabezadorem],
+      body: dataRem,
+      foot: dataFootrem,
+    })
+
+    //DATA AFP
+    let dataEncabezadoafp = ['AFP','Clasificador','Meta','Monto']
+
+    let noAbonosafp = response.dataAfp
+
+    let dataAfp = []
+    let totalAfp = 0
+
+    for(const item in noAbonosafp) {
+      let dataobjetoafp = []
+      dataobjetoafp.push(noAbonosafp[item].rp_admin_pension)
+      dataobjetoafp.push(noAbonosafp[item].cl_clasificador)
+      dataobjetoafp.push(noAbonosafp[item].sf_secuencia_funcional)
+      dataobjetoafp.push(noAbonosafp[item].monto)
+
+      dataAfp.push(dataobjetoafp)
+
+      totalAfp = totalAfp + parseFloat(noAbonosafp[item].monto)
+    }
+
+    let dataFootafp = [
+      ['TOTAL','','']
+    ]
+
+    dataFootafp[0].push(totalAfp.toFixed(2))
+
+    autoTable(doc, {
+      startY:20,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      tableWidth: tableWidth,
+      margin: {left: tableWidth+18},
+      head: [ dataEncabezadoafp],
+      body: dataAfp,
+      foot: dataFootafp,
+    })
+
+    //DATA ONP
+    let dataEncabezadoonp = ['Clasificador','Meta','Monto']
+
+    let noAbonosonp = response.dataOnp
+
+    let dataOnp = []
+    let totalOnp = 0
+
+    for(const item in noAbonosonp) {
+      let dataobjetoonp = []
+      dataobjetoonp.push(noAbonosonp[item].cl_clasificador)
+      dataobjetoonp.push(noAbonosonp[item].sf_secuencia_funcional)
+      dataobjetoonp.push(noAbonosonp[item].monto)
+
+      dataOnp.push(dataobjetoonp)
+
+      totalOnp = totalOnp + parseFloat(noAbonosonp[item].monto)
+    }
+
+    let dataFootonp = [
+      ['TOTAL','']
+    ]
+
+    dataFootonp[0].push(totalOnp.toFixed(2))
+
+    autoTable(doc, {
+      startY:20,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      tableWidth: tableWidth,
+      margin: {left: (tableWidth*2)+22},
+      head: [ dataEncabezadoonp],
+      body: dataOnp,
+      foot: dataFootonp,
+    })
+
+     //DATA ESSALUD
+     let dataEncabezadoessalud = ['Clasificador','Meta','Monto']
+
+     let noAbonosessalud = response.dataEssalud
+ 
+     let dataEssalud = []
+     let totalEssalud = 0
+ 
+     for(const item in noAbonosessalud) {
+       let dataobjetoessalud = []
+       dataobjetoessalud.push(noAbonosessalud[item].cl_clasificador)
+       dataobjetoessalud.push(noAbonosessalud[item].sf_secuencia_funcional)
+       dataobjetoessalud.push(noAbonosessalud[item].monto)
+ 
+       dataEssalud.push(dataobjetoessalud)
+ 
+       totalEssalud = totalEssalud + parseFloat(noAbonosessalud[item].monto)
+     }
+ 
+     let dataFootessalud = [
+       ['TOTAL','']
+     ]
+ 
+     dataFootessalud[0].push(totalEssalud.toFixed(2))
+
+    autoTable(doc, {
+      startY:20,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      tableWidth: tableWidth,
+      margin: {left: (tableWidth*3)+25},
+      head: [ dataEncabezadoessalud],
+      body: dataEssalud,
+      foot: dataFootessalud,
+    })
+
+
     
     doc.output('dataurlnewwindow');
   
