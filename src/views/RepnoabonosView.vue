@@ -74,12 +74,7 @@
   import NoabonoService from '@/services/NoabonoService'
   import NoabonoPdfService from '@/services/NoabonoPdfService'
 
-  let numDocumento = ref('')
   let lista_personal = ref({})
-  let tituloModal = ref()
-  let dp_motivo_na = ref()
-  let tipoAccion = ref(0)
-  let dp_id = ref(0)
   let dataPeriodos = ref([])
   let selectCodperiodo = ref()
 

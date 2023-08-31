@@ -10,7 +10,7 @@ export default {
 
     let store = useAuth();
   
-    const url = store.baseURL+'/noabonos/searchnoabono/'
+    const url = store.baseURL+'/noabonos/searchnoabono'
   
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -31,7 +31,7 @@ export default {
     fromData.append('dp_motivo_na',motivo)
 
     let store = useAuth()
-    const url = store.baseURL+'/noabonos/addnoabono/'
+    const url = store.baseURL+'/noabonos/addnoabono'
 
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -51,7 +51,7 @@ export default {
     fromData.append('dp_id',id)
 
     let store = useAuth()
-    const url = store.baseURL+'/noabonos/removenoabono/'
+    const url = store.baseURL+'/noabonos/removenoabono'
 
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -67,7 +67,7 @@ export default {
   async periodosNoabono() {
 
     let store = useAuth()
-    const url = store.baseURL+'/noabonos/periodosnoabono/'
+    const url = store.baseURL+'/noabonos/periodosnoabono'
 
     const rawResponse = await fetch(url, {
       method: 'POST'
@@ -87,7 +87,7 @@ export default {
 
     let store = useAuth();
   
-    const url = store.baseURL+'/noabonos/mostrarnoabono/'
+    const url = store.baseURL+'/noabonos/mostrarnoabono'
   
     const rawResponse = await fetch(url, {
       method: 'POST',

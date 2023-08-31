@@ -9,7 +9,7 @@ import useAuth from "@/store/auth";
 
     let store = useAuth();
   
-    const url = store.baseURL+'/noabonos/noabonopdf/'
+    const url = store.baseURL+'/noabonos/noabonopdf'
   
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -32,19 +32,59 @@ import useAuth from "@/store/auth";
     let numConceptos = dataConceptos.length;
 
     //Reporte No abonos
-    let noAbonos = dataConceptos.noabonos
+    let noAbonos = response.noAbono
 
     let data = []
 
-    for(var k in noAbonos) {
-      console.log(k, noAbonos[k]);
-   }
+    console.log(dataConceptos)
+    console.log(noAbonos)
 
-   return('')
+    for (const item in noAbonos){
+      let dataobjeto = []
+      dataobjeto.push(item+1)
+      dataobjeto.push(noAbonos[item].establecimiento_est_id)
+      dataobjeto.push(noAbonos[item].p_num_doc)
+      dataobjeto.push(noAbonos[item].p_a_paterno)
+      dataobjeto.push(noAbonos[item].p_a_materno)
+      dataobjeto.push(noAbonos[item].p_nombres)
+      dataobjeto.push(noAbonos[item].n_nivel)
+      dataobjeto.push(noAbonos[item].ts_tipo_servidor)
+      dataobjeto.push(noAbonos[item].dp_bruto)
+      dataobjeto.push(noAbonos[item].dp_afecto)
+
+      let resConceptos = noAbonos[item].res_conceptos
+
+      //LLENAS LOS CONCEPTOS DESCUENTOS
+      for(const itemdc in dataConceptos){
+        let monto_concepto = 0
+        for(const itemcon in  resConceptos){
+            if(dataConceptos[itemdc].con_id == resConceptos[itemcon].conceptos_con_id){
+              monto_concepto = resConceptos[itemcon].pcon_monto
+            }
+          }
+        if (!monto_concepto){
+          dataobjeto.push('-.-')
+        }else{
+          dataobjeto.push(monto_concepto)
+        }
+      }
+
+      dataobjeto.push(noAbonos[item].dp_desc)
+      dataobjeto.push(noAbonos[item].dp_liquido)
+      dataobjeto.push(noAbonos[item].dp_essalud)
+      dataobjeto.push(noAbonos[item].dp_motivo_na)
+
+      data.push(dataobjeto)
+      //console.log(noAbonos[item].dp_cod_nexus)
+    }
+
+    console.log(data)
 
     // for(let i =0;i<noAbonos.length;i++) {
-    //   data.push(noAbonos[i].dp_id)
+    //   console.log(noAbonos[i].dp_cuenta)
     // }
+
+    //return('')
 
     // Default export is a4 paper, portrait, using millimeters for units
     const doc = new jsPDF("landscape");
