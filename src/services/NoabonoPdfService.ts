@@ -117,9 +117,17 @@ import useAuth from "@/store/auth";
     dataFoot[0].push(totaldescuentos.toFixed(2))
     dataFoot[0].push(totalliquido.toFixed(2))
     dataFoot[0].push(totalessalud.toFixed(2))
+
+    //Texto encabezad
+    let width = doc.internal.pageSize.getWidth()
+    doc.setFontSize(12);
+    doc.setFont("Arial", "bold");
+    doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
+    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - PLANILLA DEL MES DE AGOSTO 2023', width/2, 22, { align: 'center' })
   
     // Or use javascript directly:
     autoTable(doc, {
+      startY: 28,
       styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -131,7 +139,16 @@ import useAuth from "@/store/auth";
 
     doc.addPage("l");
 
-    alert(doc.internal.pageSize.width-30)
+    doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
+    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - *****AGREGAR PLANILLA ***', width/2, 22, { align: 'center' })
+    doc.text('RESUMEN DE LOS NO ABONOS POR SECUENCIA FUNCIONAL Y METAS', width/2, 29, { align: 'center' })
+    doc.setFontSize(10);
+    doc.text('REMUNERACIÓN', 48, 43, { align: 'center' })
+    doc.text('SISTEMA PRIVADO DE PENSIONES', 114, 43, { align: 'center' })
+    doc.text('SISTEMA NACIONAL DE PENSIONES', 182, 43, { align: 'center' })
+    doc.text('ESSALUD', 248, 43, { align: 'center' })
+
+    
     //let pageWidth = doc.internal.pageSize.width
     let tableWidth = (doc.internal.pageSize.width - 40)/4
 
@@ -169,7 +186,7 @@ import useAuth from "@/store/auth";
 
 
     autoTable(doc, {
-      startY:20,
+      startY:48,
       styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -207,7 +224,7 @@ import useAuth from "@/store/auth";
     dataFootafp[0].push(totalAfp.toFixed(2))
 
     autoTable(doc, {
-      startY:20,
+      startY:48,
       styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -245,7 +262,7 @@ import useAuth from "@/store/auth";
     dataFootonp[0].push(totalOnp.toFixed(2))
 
     autoTable(doc, {
-      startY:20,
+      startY:48,
       styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -283,7 +300,7 @@ import useAuth from "@/store/auth";
      dataFootessalud[0].push(totalEssalud.toFixed(2))
 
     autoTable(doc, {
-      startY:20,
+      startY:48,
       styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
