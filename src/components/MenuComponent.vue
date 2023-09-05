@@ -96,7 +96,7 @@
         <div class="profile_name">Prem Shahi</div>
         <div class="job">Web Desginer</div>
       </div>
-      <i class='bx bx-log-out' ></i>
+      <i class='bx bx-log-out' @click="salirsis()"></i>
     </div>
   </li>
 </ul>
@@ -106,6 +106,10 @@
 <script setup lang="ts">
 
   import { ref , onMounted} from 'vue'
+  import useAuth from '@/store/auth';
+  import router from '@/router'
+
+  let store = useAuth()
 
   let isClose = ref(true)
 
@@ -114,6 +118,17 @@
       isClose.value = true;
     } else {
       isClose.value = false;
+    }
+  }
+
+  let salirsis = async () => {
+    const response = await store.logout()
+
+    if (response == false) {
+      alert('error')
+    } else {
+      alert('ok')
+      router.push({name: 'home'})
     }
   }
 

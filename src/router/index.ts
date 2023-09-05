@@ -43,7 +43,7 @@ const router = createRouter({
       name: 'main',
       component: DashboardView,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
     {
@@ -51,7 +51,7 @@ const router = createRouter({
       name: 'planillas',
       component: PlanillasView,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
     {
@@ -59,7 +59,7 @@ const router = createRouter({
       name: 'importacion',
       component: ImportacionView,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
     {
@@ -67,7 +67,7 @@ const router = createRouter({
       name: 'noabonos',
       component: NoabonosView,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
     {
@@ -75,7 +75,7 @@ const router = createRouter({
       name: 'repnoabonos',
       component: RepnoabonosView,
       meta: {
-        requireAuth: false
+        requireAuth: true
       }
     },
   ]

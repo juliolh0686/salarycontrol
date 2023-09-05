@@ -7,6 +7,7 @@ const useAuth = defineStore('auth', {
       baseURL: 'http://salarycontrolapi.test:8080/api',
     }
   },
+  persist:true,
   actions: {
     
     async register(name:string, email:string, password:string) {

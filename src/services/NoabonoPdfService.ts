@@ -123,7 +123,7 @@ import useAuth from "@/store/auth";
     doc.setFontSize(12);
     doc.setFont("Arial", "bold");
     doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
-    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - PLANILLA DEL MES DE AGOSTO 2023', width/2, 22, { align: 'center' })
+    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
   
     // Or use javascript directly:
     autoTable(doc, {
@@ -140,7 +140,7 @@ import useAuth from "@/store/auth";
     doc.addPage("l");
 
     doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
-    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - *****AGREGAR PLANILLA ***', width/2, 22, { align: 'center' })
+    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
     doc.text('RESUMEN DE LOS NO ABONOS POR SECUENCIA FUNCIONAL Y METAS', width/2, 29, { align: 'center' })
     doc.setFontSize(10);
     doc.text('REMUNERACIÓN', 48, 43, { align: 'center' })
