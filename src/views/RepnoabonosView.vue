@@ -74,8 +74,26 @@
   import NoabonoService from '@/services/NoabonoService'
   import NoabonoPdfService from '@/services/NoabonoPdfService'
 
-  let lista_personal = ref({})
-  let dataPeriodos = ref([])
+  let lista_personal = ref([{
+    p_id :'',
+    p_a_paterno : '',
+    p_a_materno : '',
+    p_nombres : '',
+    p_num_doc : '',
+    dp_cod_cargo : '',
+    cargo_car_id: '',
+    dp_bruto: 0,
+    dp_afecto: 0,
+    dp_desc: 0,
+    dp_liquido: 0,
+    dp_essalud: 0
+  }])
+
+  let dataPeriodos = ref([{
+    pll_id : '',
+    pll_periodo:''
+  }])
+
   let selectCodperiodo = ref()
 
   const getmostrarNoabono = async(id:number) => {
@@ -83,7 +101,20 @@
     if(selectCodperiodo.value == undefined) {
       alert('Seleccionar Periodo')
     } else {
-      lista_personal.value = {};
+      lista_personal.value = [{
+        p_id :'',
+        p_a_paterno : '',
+        p_a_materno : '',
+        p_nombres : '',
+        p_num_doc : '',
+        dp_cod_cargo : '',
+        cargo_car_id: '',
+        dp_bruto: 0,
+        dp_afecto: 0,
+        dp_desc: 0,
+        dp_liquido: 0,
+        dp_essalud: 0
+      }];
 
       const response = await NoabonoService.mostrarNoabono(id);
 

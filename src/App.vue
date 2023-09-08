@@ -30,7 +30,7 @@
     <div class="central">
       <div class="navbar"></div>
       <div class="navbar-central">
-        <RouterView />
+        <!-- /<RouterView /> -->
       </div>
     </div>
     </div>

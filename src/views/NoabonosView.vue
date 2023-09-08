@@ -98,19 +98,21 @@
 
 <script setup lang="ts">
   import {ref } from 'vue'
+  import type { Ref } from 'vue'
   import NoabonoService from '@/services/NoabonoService'
   import NoabonoPdfService from '@/services/NoabonoPdfService'
+  import type IListapersonal from '@/interfaces/IListapersonal'
 
   let numDocumento = ref('')
-  let lista_personal = ref({})
+  const lista_personal:Ref<Array<IListapersonal>> = ref([])
   let tituloModal = ref()
   let dp_motivo_na = ref()
   let tipoAccion = ref(0)
-  let dp_id = ref(0)
+  let dp_id = ref()
 
   const getsearchNoabono = async(numDocumento:string) => {
 
-    lista_personal.value = {};
+    lista_personal.value = [];
 
     const response = await NoabonoService.searchNoabono(numDocumento);
 
@@ -127,7 +129,7 @@
     modal.classList.remove("active")
   }
 
-  const abrirModal = (tipo:string, data=[]) => {
+  const abrirModal = (tipo:string, data:IListapersonal) => {
 
     switch(tipo) {
       case 'add':
@@ -175,7 +177,7 @@
   }
 
   const generarPDF = async() => {
-    const response = await NoabonoPdfService();
+    const response = await NoabonoPdfService(dp_id.value);
   }
 
 </script>

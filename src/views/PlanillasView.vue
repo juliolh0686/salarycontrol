@@ -1,11 +1,6 @@
 <template>
   <div>
     <h1>Planillas</h1>
-    <form action="">
-      <label>DNI:</label>
-      <input type="text">
-      <button>Buscar</button>
-    </form>
     <table>
       <thead>
         <tr>

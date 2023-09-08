@@ -27,7 +27,7 @@ export default {
   async addNoabono(id:number, motivo:string) {
 
     let fromData = new FormData()
-    fromData.append('dp_id',id)
+    fromData.append('dp_id',id.toString())
     fromData.append('dp_motivo_na',motivo)
 
     let store = useAuth()
@@ -48,7 +48,7 @@ export default {
   async removeNoabono(id:number) {
 
     let fromData = new FormData()
-    fromData.append('dp_id',id)
+    fromData.append('dp_id',id.toString())
 
     let store = useAuth()
     const url = store.baseURL+'/noabonos/removenoabono'

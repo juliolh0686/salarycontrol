@@ -1,5 +1,5 @@
 <template>
-  <MenuComponent/>
+  <!-- <MenuComponent/> -->
   <div>
     Home
   </div>
