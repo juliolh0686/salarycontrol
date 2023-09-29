@@ -19,6 +19,7 @@
       
     
       <button class="btn btn-primary" type="submit" @click.prevent="login">Iniciar sesión</button>
+      <button class="btn btn-primary" ><router-link to="/register">Registrarme</router-link></button>
 
   </form>
 </template>

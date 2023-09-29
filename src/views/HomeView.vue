@@ -4,6 +4,7 @@
     Home
   </div>
   <button type="submit" @click.prevent="logout">Logout</button>
+  <button class="btn btn-primary" ><router-link to="/login">Login</router-link></button>
 </template>
 
 <script lang="ts" setup>

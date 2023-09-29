@@ -25,12 +25,12 @@
 <template>
   <div class="container">
     <div class="menu">
-      <MenuComponent v-if="route.path != '/login' && route.path != '/register'"/>
+      <MenuComponent v-if="route.path != '/login' && route.path != '/register' && route.path != '/'"/>
     </div>
     <div class="central">
       <div class="navbar"></div>
       <div class="navbar-central">
-        <!-- /<RouterView /> -->
+        <RouterView />
       </div>
     </div>
     </div>

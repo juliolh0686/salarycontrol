@@ -80,10 +80,11 @@ export default {
   },
 
    //Busqueda por periodo no abono
-   async mostrarNoabono(pll_id:number) {
+   async mostrarNoabono(page:number, pll_id:number) {
 
     let formData = new FormData()
     formData.append('pll_id',pll_id.toString())
+    formData.append('page',page.toString())
 
     let store = useAuth();
   
@@ -95,9 +96,9 @@ export default {
     })
   
     const response = await rawResponse.json();
-  
+
     return response;
-  
+
   },
 
 }

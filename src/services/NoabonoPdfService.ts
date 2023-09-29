@@ -128,10 +128,11 @@ import useAuth from "@/store/auth";
     // Or use javascript directly:
     autoTable(doc, {
       startY: 28,
-      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle',cellPadding: 0.8 },
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+      showFoot: 'lastPage',
       head: [ dataEncabezado, encabezadoDescuentos],
       body: data,
       foot: dataFoot,
@@ -187,7 +188,7 @@ import useAuth from "@/store/auth";
 
     autoTable(doc, {
       startY:48,
-      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -225,7 +226,7 @@ import useAuth from "@/store/auth";
 
     autoTable(doc, {
       startY:48,
-      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -263,7 +264,7 @@ import useAuth from "@/store/auth";
 
     autoTable(doc, {
       startY:48,
-      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -301,7 +302,7 @@ import useAuth from "@/store/auth";
 
     autoTable(doc, {
       startY:48,
-      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
+      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -311,6 +312,52 @@ import useAuth from "@/store/auth";
       body: dataEssalud,
       foot: dataFootessalud,
     })
+
+    doc.addPage("l");
+
+    doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
+    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
+    doc.text('RESUMEN DE LOS NO ABONOS POR SECUENCIA FUNCIONAL Y METAS', width/2, 29, { align: 'center' })
+    doc.setFontSize(10);
+    doc.text('RENTA DE QUINTA CATEGORIA', 48, 43, { align: 'center' })
+
+    //DATA QUINTA CATEGORIA
+    let dataEncabezadoquinta = ['Clasificador','Meta','Monto']
+
+    let noAbonosquinta = response.dataQuintacat
+
+    let dataQuinta = []
+    let totalQuinta = 0
+
+    for(const item in noAbonosquinta) {
+      let dataobjetoquinta = []
+      dataobjetoquinta.push(noAbonosquinta[item].cl_clasificador)
+      dataobjetoquinta.push(noAbonosquinta[item].sf_secuencia_funcional)
+      dataobjetoquinta.push(noAbonosquinta[item].monto)
+
+      dataQuinta.push(dataobjetoquinta)
+
+      totalQuinta = totalQuinta + parseFloat(noAbonosquinta[item].monto)
+    }
+
+    let dataFootquinta = [
+      ['TOTAL','']
+    ]
+
+    dataFootquinta[0].push(totalQuinta.toFixed(2))
+
+   autoTable(doc, {
+     startY:48,
+     styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
+     headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+     bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+     footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
+     tableWidth: tableWidth,
+     //margin: {left: (tableWidth*3)+25},
+     head: [ dataEncabezadoquinta],
+     body: dataQuinta,
+     foot: dataFootquinta,
+   })
 
 
     
