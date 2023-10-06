@@ -17,6 +17,15 @@
       </li>
       <li>
         <a href="#">
+          <i class='bx bx-grid-alt' ></i>
+          <RouterLink to="/autorizaciondesc"><span class="link_name">Autorización de Descuentos</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink class="link_name" to="/autorizaciondesc">Autorización de Descuentos</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
           <i class='bx bx-calculator' ></i>
           <RouterLink to="/planillas"><span class="link_name">Planillas</span></RouterLink>
         </a>
@@ -80,10 +89,10 @@
       <li>
         <a href="#">
           <i class='bx bx-pie-chart-alt-2' ></i>
-          <span class="link_name">Analytics</span>
+          <RouterLink to="/declaracion"><span class="link_name">Declaración</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
-          <li><a class="link_name" href="#">Analytics</a></li>
+          <li><RouterLink to="/declaracion">Declaracion</RouterLink></li>
         </ul>
       </li>
 

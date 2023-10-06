@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="titulo-central">No Abonos - Reportes</div>
+    <div class="titulo-central">Reportes Declaración</div>
     <div class="container-from-search">
       <div>
         <label>Periodo:</label>
@@ -11,65 +11,25 @@
           <option v-for='periodos in dataPeriodos' :key='periodos.pll_id' :value='periodos.pll_id' v-text='periodos.pll_periodo'></option>
         </select>
       </div>
-      <div>
-        <button class="btnj btnj-primary" @click="getmostrarNoabono(0,selectCodperiodo)">Buscar</button>
-      </div>
-      <div>
-        <button class="btnj btnj-secundary" @click="generarPDF(selectCodperiodo)">PDF</button>
-      </div>
-      <div>
-        <button class="btnj btnj-secundary" @click="generarExcel(selectCodperiodo)">Excel</button>
-      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>N°</th>
-          <th>Cod_Personal</th>
-          <th>Apellido paterno</th>
-          <th>Apellido Materno</th>
-          <th>Nombres</th>
-          <th>Num_Documento</th>
-          <th>Cod_Reg</th>
-          <th>Cargo</th>
-          <th>Bruto</th>
-          <th>Afecto</th>
-          <th>Descuentos</th>
-          <th>Liquido</th>
-          <th>Aportes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(personal, index) in lista_personal" :key="personal.p_id">
-          <td> {{ index+pagination.from }} </td>
-          <td> {{ personal.p_id }} </td>
-          <td> {{ personal.p_a_paterno }} </td>
-          <td>{{ personal.p_a_materno }}</td>
-          <td>{{ personal.p_nombres }}</td>
-          <td>{{ personal.p_num_doc }}</td>
-          <td>{{ personal.dp_cod_cargo }}</td>
-          <td>{{ personal.cargo_car_id }}</td>
-          <td class="text-right">{{ personal.dp_bruto }}</td>
-          <td class="text-right">{{ personal.dp_afecto }}</td>
-          <td class="text-right">{{ personal.dp_desc }}</td>
-          <td class="text-right">{{ personal.dp_liquido }}</td>
-          <td class="text-right">{{ personal.dp_essalud }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <nav class="container-pagination">
-      <ul class="pagination">
-        <li class="page-item" v-if="pagination.current_page>1">
-            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page-1)">Anterior</a>
-        </li>
-          <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
-            <a class="page-link" href="#" @click.prevent="cambiarPagina(page)">{{ page }}</a>
-        </li>
-          <li class="page-item" v-if="pagination.current_page<pagination.last_page">
-            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page+1)">Siguiente</a>
-        </li>
-      </ul>
-    </nav>
+    <div class="container-reportes">
+      <h2>Reportes PDT PLAME</h2>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Generar Archivo PDT</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 4 .ide</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 5 .tra</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 17 .est</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 29 .edu</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 11 .per</button>
+    </div>
+    <div class="container-reportes">
+      <h2>Reportes AFP</h2>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP Nominal</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP</button>
+    </div>
+    <div class="container-reportes">
+      <h2>Reportes 100 en 100</h2>
+      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Generar Archivos</button>
+    </div>
   </div>
 </template>
 
@@ -91,7 +51,7 @@
   import {ref, onMounted , computed } from 'vue'
   import NoabonoService from '@/services/NoabonoService'
   import NoabonoPdfService from '@/services/NoabonoPdfService'
-  import NoabonoExcelService from '@/services/NoabonoExcelService'
+  import AfpexcelNominalService from '@/services/AfpexcelNominalService'
 
   let pagination = ref(
     {
@@ -206,8 +166,11 @@
     const response = await NoabonoPdfService(id);
   }
 
-  const generarExcel = async(id:number) => {
-    const response = await NoabonoExcelService(id);
+  const ExcelAFPNominal = async(id:number) => {
+
+    const response = await AfpexcelNominalService.excelAfpnominal(id);
+    //console.log(response.arraydata)
+
   }
 
 

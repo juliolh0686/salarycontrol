@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Planillas</h1>
+    <div class="titulo-central">Planillas</div>
     <table>
       <thead>
         <tr>

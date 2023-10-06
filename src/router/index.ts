@@ -8,6 +8,8 @@ import ImportacionView from '@/views/ImportacionView.vue'
 import DashboardView from '@/views/DashboardView.vue'
 import NoabonosView from '@/views/NoabonosView.vue'
 import RepnoabonosView from '@/views/RepnoabonosView.vue'
+import AutorizaciondescuentoView from '@/views/AutorizaciondescuentoView.vue'
+import DeclaracionView from '@/views/DeclaracionView.vue'
 import useAuth from '@/store/auth'
 
 
@@ -74,6 +76,22 @@ const router = createRouter({
       path: '/repnoabonos',
       name: 'repnoabonos',
       component: RepnoabonosView,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/autorizaciondesc',
+      name: 'autorizaciondesc',
+      component: AutorizaciondescuentoView,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/declaracion',
+      name: 'declaracion',
+      component: DeclaracionView,
       meta: {
         requireAuth: true
       }

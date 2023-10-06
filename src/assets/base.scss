@@ -198,3 +198,32 @@ label {
   font-weight: bold;
   color: #008CBA;
 }
+
+.controlselect {
+  padding: 6px;
+  font-size: 14px;
+  border: 2px solid #ccc; /* Grosor y estilo del borde */
+  border-radius: 5px; /* Redondear las esquinas */
+  cursor: pointer;
+  color:#008CBA;
+  font-weight:700;
+}
+
+.controlselect option {
+  font-size: 14px;
+  color:#008CBA;
+  font-weight: 400;
+}
+
+.controlselect:focus {
+  outline: none; /* Eliminar el contorno al enfocar */
+  border-color: #66afe9; /* Cambiar el color del borde al enfocar */
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6); /* Agregar sombra al enfocar */
+}
+
+.container-reportes {
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+}

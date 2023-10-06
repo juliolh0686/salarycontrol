@@ -1,19 +1,21 @@
 <template>
   <div class="content-import">
-    <div class="import-149">
-      <select class="form-control" v-model="tipocarga">
+    <div class="titulo-central">No Abonos - Reportes</div>
+    <div class="container-reportes">
+      <h2>Importación Archivos 149</h2>
+      <select class="form-control controlselect" v-model="tipocarga">
         <option disabled value="">Seleccionar</option>
         <option value="continua">Continua</option>
         <option value="ocasional">Ocasional</option>
         <option value="complementaria">complementaria</option>
       </select>
+      <input type="file" id="file" name="file" ref="fileInput" @change="handleFileUpload()"/>
+      <button class="btnj btnj-primary" v-on:click="submitFile()">Importar</button>
     </div>
-    <input type="file" id="file" name="file" ref="fileInput" @change="handleFileUpload()"/>
-    <button v-on:click="submitFile()">Importar</button>
 
-
-    <div class="import-002">
-      <select class="form-control" v-model="tipocarga002">
+    <div class="container-reportes">
+      <h2>Importación Archivos 002</h2>
+      <select class="form-control controlselect" v-model="tipocarga002">
         <option disabled value="">Seleccionar</option>
         <option value="1">CONTINUA</option>
         <option value="2">CONTINUA-B</option>
@@ -21,7 +23,7 @@
         <option value="4">COMPLEMENTARIA</option>
       </select>
       <input type="file" id="file002" name="file002" ref="fileInput002" @change="handleFileUpload002()"/>
-      <button v-on:click="submitFile002()">Importar</button>
+      <button class="btnj btnj-primary" v-on:click="submitFile002()">Importar</button>
     </div>
     
     
@@ -85,4 +87,9 @@
   }
 
 </script>
+
+<style scoped>
+
+
+</style>
 
