@@ -14,22 +14,25 @@
     </div>
     <div class="container-reportes">
       <h2>Reportes PDT PLAME</h2>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Generar Archivo PDT</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 4 .ide</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 5 .tra</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 17 .est</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 29 .edu</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Estructura 11 .per</button>
+      <button class="btnj btnj-secundary" @click="ExcelAFPArchivoPDT(selectCodperiodo)">Generar Archivo PDT</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 4 .ide</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 5 .tra</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 17 .est</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 29 .edu</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 11 .per</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes AFP</h2>
       <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP Nominal</button>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">AFP</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes 100 en 100</h2>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">Generar Archivos</button>
+      <button class="btnj btnj-secundary" @click="msgpendiente()">Generar Archivos</button>
     </div>
+    <!--Loading-->
+    <Loading :is-visible='isVisible' :text='loadingText'></Loading>
+    <!--Loading-->
   </div>
 </template>
 
@@ -48,131 +51,65 @@
 </style>
 
 <script setup lang="ts">
-  import {ref, onMounted , computed } from 'vue'
+  import {ref, onMounted } from 'vue'
   import NoabonoService from '@/services/NoabonoService'
-  import NoabonoPdfService from '@/services/NoabonoPdfService'
   import AfpexcelNominalService from '@/services/AfpexcelNominalService'
-
-  let pagination = ref(
-    {
-    'total': 0,
-    'current_page': 0,
-    'per_page': 0,
-    'last_page': 0,
-    'from': 0,
-    'to': 0
-  }
-  ) 
-
-  let lista_personal = ref([{
-    p_id :'',
-    p_a_paterno : '',
-    p_a_materno : '',
-    p_nombres : '',
-    p_num_doc : '',
-    dp_cod_cargo : '',
-    cargo_car_id: '',
-    dp_bruto: 0,
-    dp_afecto: 0,
-    dp_desc: 0,
-    dp_liquido: 0,
-    dp_essalud: 0
-  }])
+  import PdtexcelService from '@/services/PdtexcelService'
+  import Loading from '@/components/LoadingComponent.vue'
 
   let dataPeriodos = ref([{
     pll_id : '',
     pll_periodo:''
   }])
 
-  let selectCodperiodo = ref()
+  let selectCodperiodo = ref(0)
 
+  const isVisible = ref(false)
+  const loadingText = ref('Loading ...');
 
-  const offset = ref(3);
+  //REPORTE DE AFP CON CLASIFICADOR Y SECUENCIA FUNCIONAL
+  const ExcelAFPNominal = async(id:number) => {
 
-  // Propiedad computada que calcula 'isActived'
-  const isActived = computed(() => {
-    return pagination.value.current_page;
-  });
-
-  // Propiedad computada que calcula 'pagesNumber'
-    const pagesNumber = computed(() => {
-
-      if (!pagination.value.to) {
-        return [];
-      }
-
-      let from = pagination.value.current_page - offset.value;
-      if (from < 1) {
-        from = 1;
-      }
-
-      let to = from + (offset.value * 2);
-      if (to >= pagination.value.last_page) {
-        to = pagination.value.last_page;
-      }
-
-      const pagesArray = [];
-      while (from <= to) {
-        pagesArray.push(from);
-        from++;
-      }
-
-      return pagesArray;
-    });
-
-
-
-
-  const cambiarPagina = (page:number) => {
-    pagination.value.current_page = page;
-    getmostrarNoabono(page,selectCodperiodo.value);
-  }
-
-
-  const getmostrarNoabono = async(page:number, id:number) => {
-
-    if(selectCodperiodo.value == undefined) {
+    if ( id == 0 ) {
       alert('Seleccionar Periodo')
-    } else {
-      lista_personal.value = [{
-        p_id :'',
-        p_a_paterno : '',
-        p_a_materno : '',
-        p_nombres : '',
-        p_num_doc : '',
-        dp_cod_cargo : '',
-        cargo_car_id: '',
-        dp_bruto: 0,
-        dp_afecto: 0,
-        dp_desc: 0,
-        dp_liquido: 0,
-        dp_essalud: 0
-      }];
+      return
+    }
 
-
-      const response = await NoabonoService.mostrarNoabono(page,id);
-
-      if (response.status == false) {
-        alert(response.message)
-      } else {
-        lista_personal.value = response.personal.data
-        pagination.value = response.pagination
-      }
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo AFP ...'
+      const response = await AfpexcelNominalService.excelAfpnominal(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
     }
 
   }
 
-  const generarPDF = async(id:number) => {
-    const response = await NoabonoPdfService(id);
+  //REPORTE EXCEL DE PDT - ESTRUCTURA SOLICITADA
+  const ExcelAFPArchivoPDT = async(id:number) => {
+
+    if ( id == 0 ) {
+      alert('Seleccionar Periodo')
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo PDT ...'
+      const response = await PdtexcelService(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
   }
 
-  const ExcelAFPNominal = async(id:number) => {
-
-    const response = await AfpexcelNominalService.excelAfpnominal(id);
-    //console.log(response.arraydata)
-
+  const msgpendiente = () => {
+    alert('Mensaje: Opción en Elaboración')
   }
-
 
   const periodosNoabono = async() => {
 
@@ -185,6 +122,7 @@
     }
   }
 
+
   onMounted(() => {
     periodosNoabono()
   })
@@ -192,37 +130,5 @@
 </script>
 
 <style scoped>
-
-.container-pagination {
-  margin-top: 20px;
-}
-.pagination {
-  display: flex;
-}
-
-.pagination .page-item .page-link {
-  text-decoration: none;
-  color: white;
-}
-
-.pagination .page-item {
-  background-color: #008CBA; 
-  margin-left: 10px;
-  padding: 10px;
-  border-radius: 5px;
-  list-style: none;
-} 
-
-.pagination .active {
-  background-color: #07475c;
-}
-
-.text-right {
-  text-align: right;
-}
-
-td {
-  padding: 0 5px;
-}
 
 </style>

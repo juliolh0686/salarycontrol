@@ -5,6 +5,7 @@ const useAuth = defineStore('auth', {
     return {
       token : null,
       baseURL: 'http://salarycontrolapi.test:8080/api',
+      user : ''
     }
   },
   persist:true,
@@ -54,7 +55,7 @@ const useAuth = defineStore('auth', {
         this.token=null
         return false
       }else {
-        alert(response.token)
+        this.user = response.user.name
         this.token = response.token
         return true
       }

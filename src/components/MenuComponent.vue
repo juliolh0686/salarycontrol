@@ -102,8 +102,8 @@
         <img src="../assets/img/profile.jpg" alt="profileImg">
       </div>
       <div class="name-job">
-        <div class="profile_name">Prem Shahi</div>
-        <div class="job">Web Desginer</div>
+        <div class="profile_name">{{ nombre }}</div>
+        <div class="job">UGEL 07</div>
       </div>
       <i class='bx bx-log-out' @click="salirsis()"></i>
     </div>
@@ -121,6 +121,8 @@
   let store = useAuth()
 
   let isClose = ref(true)
+
+  let nombre = ref(store.user.split(' ')[0] +' '+ store.user.split(' ')[1])
 
   let toggle = () => {
     if (!isClose.value) {
