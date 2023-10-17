@@ -1,4 +1,5 @@
 <template>
+  <div class="navbar-central">
   <div>
     <div class="titulo-central">No Abonos - Reportes</div>
     <div class="container-from-search">
@@ -71,6 +72,7 @@
       </ul>
     </nav>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>
@@ -88,6 +90,7 @@
 </style>
 
 <script setup lang="ts">
+
   import {ref, onMounted , computed } from 'vue'
   import NoabonoService from '@/services/NoabonoService'
   import NoabonoPdfService from '@/services/NoabonoPdfService'
@@ -124,7 +127,7 @@
     pll_periodo:''
   }])
 
-  let selectCodperiodo = ref()
+  let selectCodperiodo = ref(0)
 
 
   const offset = ref(3);
@@ -252,14 +255,6 @@
 
 .pagination .active {
   background-color: #07475c;
-}
-
-.text-right {
-  text-align: right;
-}
-
-td {
-  padding: 0 5px;
 }
 
 </style>

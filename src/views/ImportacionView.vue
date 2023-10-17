@@ -1,6 +1,7 @@
 <template>
+  <div class="navbar-central">
   <div class="content-import">
-    <div class="titulo-central">No Abonos - Reportes</div>
+    <div class="titulo-central">Importación de Archivos</div>
     <div class="container-reportes">
       <h2>Importación Archivos 149</h2>
       <select class="form-control controlselect" v-model="tipocarga">
@@ -26,9 +27,8 @@
       <button class="btnj btnj-primary" v-on:click="submitFile002()">Importar</button>
     </div>
     
-    
   </div>
-  
+</div>
 </template>
 
 <script lang="ts" setup>

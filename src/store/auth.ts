@@ -53,11 +53,11 @@ const useAuth = defineStore('auth', {
 
       if(response.status == false) {
         this.token=null
-        return false
+        return response
       }else {
         this.user = response.user.name
         this.token = response.token
-        return true
+        return response
       }
     },
 

@@ -1,48 +1,119 @@
 <template>
-
-  <form>
-      <label for="email" class="form-label">Email or Username</label>
-      <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" v-model="email" bautofocus/>
-      <label class="form-label" for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="form-control"
-          name="password"
-          placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-          aria-describedby="password"
-          v-model="password"
-        />
+  <div class="container-loguin">
+    <div class="imagen-loguin"></div>
+    <div class="form-loguin">
+      <div class="container-loguin_form">
+        <form>
+          <label for="email" class="form-label">Correo Electronico</label>
+          <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" v-model="email" bautofocus/>
+          <label class="form-label" for="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              name="password"
+              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+              aria-describedby="password"
+              v-model="password"
+            />
+            
+            <input class="form-check-input" type="checkbox" id="remember-me" />
+            <label class="form-check-label" for="remember-me"> Acuérdate de mí </label>
         
-        <input class="form-check-input" type="checkbox" id="remember-me" />
-        <label class="form-check-label" for="remember-me"> Acuérdate de mí </label>
+          <button class="btnj btnj-primary" type="submit" @click.prevent="login">Iniciar sesión</button>
+          <button class="btnj btnj-primary" ><router-link to="/register">Registrarme</router-link></button>
+        </form>
+      </div>
       
-    
-      <button class="btn btn-primary" type="submit" @click.prevent="login">Iniciar sesión</button>
-      <button class="btn btn-primary" ><router-link to="/register">Registrarme</router-link></button>
-
-  </form>
+    </div>
+  
+</div>
 </template>
 
 <script lang="ts" setup>
   import {ref} from 'vue'
   import useAuth from '@/store/auth';
   import router from '@/router'
+  import Swal from 'sweetalert2'
 
   const store = useAuth()
   const email = ref('')
   const password = ref('')
-  const feedback = ref('')
 
   const login = async() => {
-    const response = await store.login(email.value,password.value)
 
-    if (response == false) {
-      feedback. value = "login error"
-    } else {
-      router.push({name: 'main'})
+    try {
+
+      const response = await store.login(email.value,password.value)
+
+      if (response.status == false) {
+        if(response.errors) {
+          let msgemail = response.errors.email ? response.errors.email : '';
+          let msgpassword = response.errors.password ? response.errors.password : '';
+          Swal.fire({
+            icon: 'error',
+            html: msgemail+'<br>'+msgpassword,
+          })
+        }else {
+          Swal.fire({
+            icon: 'error',
+            html: response.message,
+          })
+        }
+        
+      } else {
+        Swal.fire({
+            icon: 'success',
+            html: response.message,
+        })
+        router.push({name: 'main'})
+      }
+
+    } catch (error) {
+      alert(error)
     }
+
+    
     
   }
 
 </script>
+
+<style scoped>
+
+.container-loguin {
+  display: flex;
+  height: 100vh;
+}
+
+.imagen-loguin {
+  width: 50%;
+  height: 100vh;
+  background-image: url('../assets/img/ilustracion.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:center;
+}
+
+.form-loguin {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-loguin_form {
+  width: 300px;
+}
+
+.controlinput {
+  padding: 6px;
+  font-size: 14px;
+  border: 2px solid #ccc; /* Grosor y estilo del borde */
+  border-radius: 5px; /* Redondear las esquinas */
+  cursor: pointer;
+  color:#008CBA;
+  font-weight:700;
+}
+
+</style>

@@ -1,5 +1,7 @@
 <template>
-  <div>
-    <h1>Dashboard</h1>
+  <div class="navbar-central">
+    <div>
+      <div class="titulo-central">Dashboard</div>
+    </div>
   </div>
 </template>

@@ -4,14 +4,14 @@ import * as XLSX from 'xlsx';
 export default {
 
   //Busqueda de personal para el registro de no abono
-  async excelAfpnominal(num_id:number) {
+  async Afpexcel(num_id:number) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
 
     let store = useAuth();
   
-    const url = store.baseURL+'/planilla/afpExcelnominal'
+    const url = store.baseURL+'/planilla/afpExcel'
   
     const rawResponse = await fetch(url, {
       method: 'POST',
@@ -25,7 +25,7 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'DataAFPNominal.xlsx');
+    XLSX.writeFile(wb, 'DataAFP.xlsx');
   
   
   },

@@ -1,4 +1,5 @@
 <template>
+  <div class="navbar-central">
   <div>
     <div class="titulo-central">No Abonos - Registro</div>
     <div class="container-from-search">
@@ -79,6 +80,7 @@
         <button type="button" v-if="tipoAccion==2" class="btnj btnj-primary" @click="removeNoabono()">Retirar</button>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

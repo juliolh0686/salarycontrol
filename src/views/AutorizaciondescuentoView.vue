@@ -1,4 +1,5 @@
 <template>
+  <div class="navbar-central">
   <div>
     <div class="titulo-central">Autorización de Descuentos</div>
     <div class="container-from-search">
@@ -50,6 +51,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </template>
 
 <style lang="scss" scoped>

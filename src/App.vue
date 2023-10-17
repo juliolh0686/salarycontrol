@@ -28,10 +28,8 @@
       <MenuComponent v-if="route.path != '/login' && route.path != '/register' && route.path != '/'"/>
     </div>
     <div class="central">
-      <div class="navbar"></div>
-      <div class="navbar-central">
-        <RouterView />
-      </div>
+      <div class="navbar" v-if="route.path != '/login' && route.path != '/register' && route.path != '/'"></div>
+        <RouterView/>
     </div>
     </div>
 </template>
@@ -43,12 +41,7 @@
 }
 .central {
   width: 100%;
-}
-
-.navbar-central {
-  margin: 30px;
-  padding: 20px 40px;
-  background-color: #fff;
+  background-color: #F5F7FB;
 }
 
 .navbar{

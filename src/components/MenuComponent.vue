@@ -17,7 +17,7 @@
       </li>
       <li>
         <a href="#">
-          <i class='bx bx-grid-alt' ></i>
+          <i class='bx bxs-business' ></i>
           <RouterLink to="/autorizaciondesc"><span class="link_name">Autorización de Descuentos</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
@@ -59,31 +59,16 @@
       <li>
         <div class="iocn-link">
           <a href="#">
-            <i class='bx bx-collection' ></i>
-            <span class="link_name">Category</span>
-          </a>
-          <i class='bx bxs-chevron-down arrow' ></i>
-        </div>
-        <ul class="sub-menu">
-          <li><a class="link_name" href="#">Category</a></li>
-          <li><a href="#">HTML & CSS</a></li>
-          <li><a href="#">JavaScript</a></li>
-          <li><a href="#">PHP & MySQL</a></li>
-        </ul>
-      </li>
-      <li>
-        <div class="iocn-link">
-          <a href="#">
             <i class='bx bx-book-alt' ></i>
-            <span class="link_name">Posts</span>
+            <span class="link_name">Menu</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Posts</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Login Form</a></li>
-          <li><a href="#">Card Design</a></li>
+          <li><a class="link_name" href="#">Menu</a></li>
+          <li><a href="#">Submenu</a></li>
+          <li><a href="#">Submenu</a></li>
+          <li><a href="#">Submenu</a></li>
         </ul>
       </li>
       <li>

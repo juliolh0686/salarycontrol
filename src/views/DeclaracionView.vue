@@ -1,4 +1,5 @@
 <template>
+  <div class="navbar-central">
   <div>
     <div class="titulo-central">Reportes Declaración</div>
     <div class="container-from-search">
@@ -15,25 +16,28 @@
     <div class="container-reportes">
       <h2>Reportes PDT PLAME</h2>
       <button class="btnj btnj-secundary" @click="ExcelAFPArchivoPDT(selectCodperiodo)">Generar Archivo PDT</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 4 .ide</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 5 .tra</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 17 .est</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 29 .edu</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Estructura 11 .per</button>
+      <button class="btnj btnj-secundary" @click="generarTxtid(selectCodperiodo)">Estructura 4 .ide</button>
+      <button class="btnj btnj-secundary" @click="generarTxttra(selectCodperiodo)">Estructura 5 .tra</button>
+      <button class="btnj btnj-secundary" @click="generarTxtest(selectCodperiodo)">Estructura 17 .est</button>
+      <button class="btnj btnj-secundary" @click="generarTxtedu(selectCodperiodo)">Estructura 29 .edu</button>
+      <button class="btnj btnj-secundary" @click="generarTxtper(selectCodperiodo)">Estructura 11 .per</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes AFP</h2>
       <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP Nominal</button>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">AFP</button>
+      <button class="btnj btnj-secundary" @click="excelAFP(selectCodperiodo)">AFP</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes 100 en 100</h2>
-      <button class="btnj btnj-secundary" @click="msgpendiente()">Generar Archivos</button>
+      <button class="btnj btnj-secundary" @click="excelPdt100(selectCodperiodo)">Generar Archivos</button>
     </div>
     <!--Loading-->
     <Loading :is-visible='isVisible' :text='loadingText'></Loading>
     <!--Loading-->
   </div>
+
+</div>
+
 </template>
 
 <style lang="scss" scoped>
@@ -55,7 +59,11 @@
   import NoabonoService from '@/services/NoabonoService'
   import AfpexcelNominalService from '@/services/AfpexcelNominalService'
   import PdtexcelService from '@/services/PdtexcelService'
+  import PdttxtService from '@/services/PdttxtService'
+  import AfpexcelService from '@/services/AfpexcelService'
+  import Pdtexcel100Service from '@/services/Pdtexcel100Service'
   import Loading from '@/components/LoadingComponent.vue'
+  import Swal from 'sweetalert2'
 
   let dataPeriodos = ref([{
     pll_id : '',
@@ -71,7 +79,10 @@
   const ExcelAFPNominal = async(id:number) => {
 
     if ( id == 0 ) {
-      alert('Seleccionar Periodo')
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
       return
     }
 
@@ -91,7 +102,10 @@
   const ExcelAFPArchivoPDT = async(id:number) => {
 
     if ( id == 0 ) {
-      alert('Seleccionar Periodo')
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
       return
     }
 
@@ -105,6 +119,173 @@
       isVisible.value = false
     }
 
+  }
+
+  //GENERAR ARCHIVO IDE
+  const generarTxtid = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await PdttxtService.fileid(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+  }
+
+  //GENERAR ARCHIVO TRA
+  const generarTxttra = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await PdttxtService.filetra(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+    }
+
+  //GENERAR ARCHIVO EST
+  const generarTxtest = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await PdttxtService.fileest(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+    }
+
+
+  //GENERAR ARCHIVO EDU
+  const generarTxtedu = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await PdttxtService.fileedu(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+    }
+
+//GENERAR ARCHIVO PER
+  const generarTxtper = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await PdttxtService.fileper(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+    }
+
+    //GENERAR ARCHIVO AFPEXCEL
+  const excelAFP = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo IDE ...'
+      const response = await AfpexcelService.Afpexcel(id);
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
+
+    }
+
+    //GENERAR ARCHIVO EXCEL 100 EN 100
+  const excelPdt100 = async(id:number) => {
+
+    if ( id == 0 ) {
+      Swal.fire({
+        icon: 'info',
+        text: 'Seleccionar Periodo',
+      })
+      return
+    }
+
+    try {
+      isVisible.value = true
+      loadingText.value = 'Generando Archivo ...'
+      const response = await Pdtexcel100Service(id);
+
+      Swal.fire({
+        icon: 'success',
+        html: 'Archivos Generados: '+response.conteo+'<br>Directorio: D:/DATACARGA/',
+      })
+
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    } finally {
+      isVisible.value = false
+    }
   }
 
   const msgpendiente = () => {
@@ -121,6 +302,7 @@
       dataPeriodos.value = response.dataPeriodosnoabono
     }
   }
+  
 
 
   onMounted(() => {
@@ -131,4 +313,4 @@
 
 <style scoped>
 
-</style>
+</style>@/services/PdttxtService
