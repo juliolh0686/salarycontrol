@@ -45,64 +45,153 @@ thead {
   color: #FFF;
 }
 
-/* botones */
+/* BOTONES */
+
+button, .router-button {
+  all: unset;
+}
 
 .btnj {
-  border: none;
-  color: white;
+  border-radius: 4px;
   padding: 8px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
   margin: 4px 2px;
-  border-radius: 4px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
+  font-weight: 500;
 }
 
-.btnj-primary {
-    background-color: white;
-    color: black; 
-    border: 2px solid #008CBA;
+/* Boton con borde */
+.btnj-border {
+  color: #6d65c6;
+  border: 2px solid #b6bdeb;
 }
 
-.btnj-primary:hover {
-  background-color: #008CBA;
+.btnj-border:hover {
+  color: #4c468d;
+  border: 2px solid #4c468d;
+}
+
+.btnj-border:active {
+  color: #ffffff;
+  border: 2px solid #1d1b31;
+  background-color: #1d1b31;
+}
+
+.btnj-border [disabled=disabled], .btn-border:disabled {
+  cursor: not-allowed;
+  background-color: #e6e9f9;
+  border: 2px solid #e6e9f9;
+  color: #b6bdeb;
+  pointer-events:none;
+}
+
+/* Boton con color one*/
+.btnj-one {
   color: white;
+  border: 2px solid #5c95d4;
+  background-color: #5c95d4;
 }
 
-.btnj-secundary {
-  background-color: #008CBA;
-  color: white; 
-  border: 2px solid #008CBA;
+.btnj-one:hover {
+  color: white;
+  border: 2px solid #275da2;
+  background: #275da2;
 }
 
-.btnj-secundary:hover {
-background-color: #096d8f;
+.btnj-one:active {
+  color: #ffffff;
+  border: 2px solid #1f416d;
+  background-color: #1f416d;
 }
 
-.btnj-alert {
-  background-color: rgb(207, 61, 61);
-  color: white; 
-  border: 2px solid rgb(207, 61, 61);
+.btnj-one [disabled=disabled], .btn-one:disabled {
+  cursor: not-allowed;
+  background-color: #e6e9f9;
+  border: 2px solid #e6e9f9;
+  color: #b6bdeb;
+  pointer-events:none;
 }
 
-.btnj-alert:hover {
-  background-color: rgb(153, 51, 51);
+/* Boton con color two*/
+.btnj-two {
+  color: white;
+  border: 2px solid #f3767f;
+  background-color: #f3767f;
+}
+
+.btnj-two:hover {
+  color: white;
+  border: 2px solid #e63946;
+  background: #e63946;
+}
+
+.btnj-two:active {
+  color: #ffffff;
+  border: 2px solid #b3222d;
+  background-color: #b3222d;
+}
+
+.btnj-two [disabled=disabled], .btn-two:disabled {
+  cursor: not-allowed;
+  background-color: #e6e9f9;
+  border: 2px solid #e6e9f9;
+  color: #b6bdeb;
+  pointer-events:none;
+}
+
+/* Boton con color three*/
+.btnj-three {
+  color: white;
+  border: 2px solid #a1c2d8;
+  background-color: #a1c2d8;
+}
+
+.btnj-three:hover {
+  color: white;
+  border: 2px solid #457b9d;
+  background: #457b9d;
+}
+
+.btnj-three:active {
+  color: #ffffff;
+  border: 2px solid #274053;
+  background-color: #274053;
+}
+
+.btnj-three [disabled=disabled], .btn-two:disabled {
+  cursor: not-allowed;
+  background-color: #e6e9f9;
+  border: 2px solid #e6e9f9;
+  color: #b6bdeb;
+  pointer-events:none;
 }
 
 
 /*INPUTS*/
 
-input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #aeb8bd;;
-  outline:none;
+.inputj {
+  padding: 8px 10px;
+  color: #457B9D;
+  font-size: 16px;
+  border: 1px solid #A8DADC;
   border-radius: 4px;
+  width: 100%;
 }
+
+.inputj:focus {
+  outline: none;
+  border: 2px solid #457B9D;
+  background-color: #dcf0f1;
+  color: #457B9D;
+  font-weight: 300;
+}
+
+//LABELS
 
 label {
   display: block;

@@ -4,13 +4,14 @@
     <div class="form-loguin">
       <div class="container-loguin_form">
   <form action="">
-    <label for="user">User</label>
-    <input type="text" name="" id="" v-model="user">
-    <label for="email">Email</label>
-    <input type="text" name="" id="" v-model="email">
-    <label for="password">Password</label>
-    <input type="text" name="" id="" v-model="password">
-    <button type="submit" class="btnj btnj-primary" @click.prevent="register">Register</button>
+    <label for="user">Usuario</label>
+    <input type="text" class="inputj" name="" id="" v-model="user">
+    <label for="email">Correo Electrónico</label>
+    <input type="text" class="inputj" name="" id="" v-model="email">
+    <label for="password">Contraseña</label>
+    <input type="password" class="inputj" name="" id="" v-model="password">
+    <button type="submit" class="btnj btnj-one" @click.prevent="register">Register</button>
+    <button class="btnj btnj-border"><router-link to="/login" class="router-button">Tengo Usuario</router-link></button>
   </form>
   <p>{{ feedback }}</p>
 </div>
@@ -68,17 +69,7 @@
 }
 
 .container-loguin_form {
-  width: 300px;
-}
-
-.controlinput {
-  padding: 6px;
-  font-size: 14px;
-  border: 2px solid #ccc; /* Grosor y estilo del borde */
-  border-radius: 5px; /* Redondear las esquinas */
-  cursor: pointer;
-  color:#008CBA;
-  font-weight:700;
+  width: 400px;
 }
 
 </style>

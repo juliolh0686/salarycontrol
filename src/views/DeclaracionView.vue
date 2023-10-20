@@ -15,21 +15,21 @@
     </div>
     <div class="container-reportes">
       <h2>Reportes PDT PLAME</h2>
-      <button class="btnj btnj-secundary" @click="ExcelAFPArchivoPDT(selectCodperiodo)">Generar Archivo PDT</button>
-      <button class="btnj btnj-secundary" @click="generarTxtid(selectCodperiodo)">Estructura 4 .ide</button>
-      <button class="btnj btnj-secundary" @click="generarTxttra(selectCodperiodo)">Estructura 5 .tra</button>
-      <button class="btnj btnj-secundary" @click="generarTxtest(selectCodperiodo)">Estructura 17 .est</button>
-      <button class="btnj btnj-secundary" @click="generarTxtedu(selectCodperiodo)">Estructura 29 .edu</button>
-      <button class="btnj btnj-secundary" @click="generarTxtper(selectCodperiodo)">Estructura 11 .per</button>
+      <button class="btnj btnj-one" @click="ExcelAFPArchivoPDT(selectCodperiodo)">Generar Archivo PDT</button>
+      <button class="btnj btnj-three" @click="generarTxtid(selectCodperiodo)">Estructura 4 .ide</button>
+      <button class="btnj btnj-three" @click="generarTxttra(selectCodperiodo)">Estructura 5 .tra</button>
+      <button class="btnj btnj-three" @click="generarTxtest(selectCodperiodo)">Estructura 17 .est</button>
+      <button class="btnj btnj-three" @click="generarTxtedu(selectCodperiodo)">Estructura 29 .edu</button>
+      <button class="btnj btnj-three" @click="generarTxtper(selectCodperiodo)">Estructura 11 .per</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes AFP</h2>
-      <button class="btnj btnj-secundary" @click="ExcelAFPNominal(selectCodperiodo)">AFP Nominal</button>
-      <button class="btnj btnj-secundary" @click="excelAFP(selectCodperiodo)">AFP</button>
+      <button class="btnj btnj-one" @click="ExcelAFPNominal(selectCodperiodo)">AFP Nominal</button>
+      <button class="btnj btnj-one" @click="excelAFP(selectCodperiodo)">AFP</button>
     </div>
     <div class="container-reportes">
       <h2>Reportes 100 en 100</h2>
-      <button class="btnj btnj-secundary" @click="excelPdt100(selectCodperiodo)">Generar Archivos</button>
+      <button class="btnj btnj-two" @click="excelPdt100(selectCodperiodo)">Generar Archivos</button>
     </div>
     <!--Loading-->
     <Loading :is-visible='isVisible' :text='loadingText'></Loading>

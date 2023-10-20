@@ -7,13 +7,10 @@
         <label>DNI:</label>
       </div>
       <div>
-        <input type="text" v-model="numDocumento">
+        <input class="inputj" type="text" v-model="numDocumento">
       </div>
       <div>
-        <button class="btnj btnj-primary" @click="getsearchNoabono(numDocumento)">Buscar</button>
-      </div>
-      <div>
-        <button class="btnj btnj-secundary" @click="generarPDF()">PDF</button>
+        <button class="btnj btnj-one" @click="getsearchNoabono(numDocumento)">Buscar</button>
       </div>
     </div>
     <table>
@@ -50,10 +47,10 @@
           <td>{{ personal.dp_essalud }}</td>
           <td>
             <template v-if="personal.dp_noabono">
-              <button class="btnj btnj-alert" @click="abrirModal('remove',personal)"><i class='bx bxs-user-minus'></i></button>
+              <button class="btnj btnj-two" @click="abrirModal('remove',personal)"><i class='bx bxs-user-minus'></i></button>
             </template>
             <template v-else>
-              <button class="btnj btnj-secundary" @click="abrirModal('add',personal)"><i class='bx bxs-user-plus' ></i></button>
+              <button class="btnj btnj-three" @click="abrirModal('add',personal)"><i class='bx bxs-user-plus' ></i></button>
             </template>
           </td>
           
@@ -176,10 +173,6 @@
       cerrarmodal()
       getsearchNoabono(numDocumento.value)
     }
-  }
-
-  const generarPDF = async() => {
-    const response = await NoabonoPdfService(dp_id.value);
   }
 
 </script>

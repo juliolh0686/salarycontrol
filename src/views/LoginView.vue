@@ -5,23 +5,14 @@
       <div class="container-loguin_form">
         <form>
           <label for="email" class="form-label">Correo Electronico</label>
-          <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" v-model="email" bautofocus/>
+          <input type="text" class="inputj" id="email" name="email-username" placeholder="Enter your email or username" v-model="email" bautofocus/>
           <label class="form-label" for="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              name="password"
-              placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-              aria-describedby="password"
-              v-model="password"
-            />
-            
+            <input type="password" id="password" class="inputj" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" v-model="password"/>
             <input class="form-check-input" type="checkbox" id="remember-me" />
             <label class="form-check-label" for="remember-me"> Acuérdate de mí </label>
         
-          <button class="btnj btnj-primary" type="submit" @click.prevent="login">Iniciar sesión</button>
-          <button class="btnj btnj-primary" ><router-link to="/register">Registrarme</router-link></button>
+          <button class="btnj btnj-one" type="submit" @click.prevent="login">Iniciar sesión</button>
+          <button class="btnj btnj-three"><router-link to="/register" class="router-button">Registrarme</router-link></button>
         </form>
       </div>
       
@@ -103,17 +94,18 @@
 }
 
 .container-loguin_form {
-  width: 300px;
+  width: 400px;
 }
 
-.controlinput {
+/* .controlinput {
   padding: 6px;
   font-size: 14px;
   border: 2px solid #ccc; /* Grosor y estilo del borde */
-  border-radius: 5px; /* Redondear las esquinas */
-  cursor: pointer;
+  /*border-radius: 5px; /* Redondear las esquinas */
+  /*cursor: pointer;
   color:#008CBA;
   font-weight:700;
-}
+/*} */
+
 
 </style>

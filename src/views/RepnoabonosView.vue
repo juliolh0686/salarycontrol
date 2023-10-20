@@ -13,13 +13,13 @@
         </select>
       </div>
       <div>
-        <button class="btnj btnj-primary" @click="getmostrarNoabono(0,selectCodperiodo)">Buscar</button>
+        <button class="btnj btnj-one" @click="getmostrarNoabono(0,selectCodperiodo)">Buscar</button>
       </div>
       <div>
-        <button class="btnj btnj-secundary" @click="generarPDF(selectCodperiodo)">PDF</button>
+        <button class="btnj btnj-two" @click="generarPDF(selectCodperiodo)">PDF</button>
       </div>
       <div>
-        <button class="btnj btnj-secundary" @click="generarExcel(selectCodperiodo)">Excel</button>
+        <button class="btnj btnj-three" @click="generarExcel(selectCodperiodo)">Excel</button>
       </div>
     </div>
     <table>

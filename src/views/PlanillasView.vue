@@ -2,7 +2,7 @@
   <div class="navbar-central">
   <div>
     <div class="titulo-central">Planillas</div>
-    <button class="btnj btnj-secundary" @click="Abrirmodal">Nuevo</button>
+    <button class="btnj btnj-one" @click="Abrirmodal">Nuevo</button>
     <table>
       <thead>
         <tr>
@@ -27,7 +27,7 @@
           <td class="text-right">{{ planillas.pll_essalud }}</td>
           <td>{{ planillas.pll_descripcion }}</td>
           <td>{{ planillas.estado_planilla_ep_id }}</td>
-          <td> <button class="btn btn-primary">Editar</button><button class="btn btn-primary">Eliminar</button> </td>
+          <td> <button class="btnj btnj-one"><i class='bx bxs-edit image-button'></i></button><button class="btnj btnj-two"><i class='bx bxs-trash'></i></button> </td>
         </tr>
       </tbody>
     </table>

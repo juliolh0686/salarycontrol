@@ -7,13 +7,13 @@
         <label>DNI:</label>
       </div>
       <div>
-        <input type="text" v-model="numDocumento">
+        <input class="inputj" type="text" v-model="numDocumento">
       </div>
       <div>
-        <button class="btnj btnj-primary" @click="searchRegistros(numDocumento)">Buscar</button>
+        <button class="btnj btnj-one" @click="searchRegistros(numDocumento)">Buscar</button>
       </div>
       <div>
-        <button class="btnj btnj-secundary" @click="generarAutorizacionPDF()">Generar Reporte PDF</button>
+        <button class="btnj btnj-two" @click="generarAutorizacionPDF()">Generar Reporte PDF</button>
       </div>
     </div>
     <table>
