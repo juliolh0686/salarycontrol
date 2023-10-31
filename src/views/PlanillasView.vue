@@ -42,16 +42,16 @@
       <div class="modal-body">
         <div class="group-01">
           <label for="" class="label">Periodo</label>
-          <input type="text" class="form-control" id="" placeholder="Ingresar Periodo">
+          <input type="text" class="inputj" id="" placeholder="Ingresar Periodo">
         </div>
         <div class="group-01">
           <label for="" class="label">Descripción de Planilla</label>
-          <input type="email" placeholder="Correo Electronico">
+          <input type="email" class="inputj" placeholder="Ingresar Descripción">
         </div>
       </div>
       <div class="modal-footer">
-        <button id="submitBtn" class="btnj btnj-primary">Enviar</button>
-        <button class="btnj btnj-primary" @click="cerrarmodal">Cerrar</button>
+        <button id="submitBtn" class="btnj btnj-one">Enviar</button>
+        <button class="btnj btnj-two" @click="cerrarmodal">Cerrar</button>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import * as XLSX from 'xlsx';
 export default {
 
   //Busqueda de personal para el registro de no abono
-  async Afpexcel(num_id:number) {
+  async Afpexcel(num_id:number, periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -25,7 +25,7 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'DataAFP.xlsx');
+    XLSX.writeFile(wb, 'DataAFP-'+periodo+'.xlsx');
   
   
   },

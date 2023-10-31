@@ -97,15 +97,5 @@
   width: 400px;
 }
 
-/* .controlinput {
-  padding: 6px;
-  font-size: 14px;
-  border: 2px solid #ccc; /* Grosor y estilo del borde */
-  /*border-radius: 5px; /* Redondear las esquinas */
-  /*cursor: pointer;
-  color:#008CBA;
-  font-weight:700;
-/*} */
-
 
 </style>

@@ -1,10 +1,6 @@
 import useAuth from "@/store/auth"
 
-class ImportService {
-
-   constructor() {
-    
-   }
+export default {
 
 async fetchfile(file:File,tipocarga:string) {
 
@@ -22,15 +18,9 @@ async fetchfile(file:File,tipocarga:string) {
 
     const response = await rawResponse.json();
 
-    if(response.status == false) {
-      alert(response.message)
-      return false
-    }else {
-      alert(response.res)
-      return true
-    }
+    return response
 
-  }
+  },
 
   async import002activos(file:File,tipocarga:string) {
 
@@ -48,16 +38,8 @@ async fetchfile(file:File,tipocarga:string) {
   
       const response = await rawResponse.json();
   
-      if(response.status == false) {
-        alert(response.message)
-        return false
-      }else {
-        alert(response.res)
-        return true
-      }
+      return response
   
     }
 
 }
-
-export default ImportService;

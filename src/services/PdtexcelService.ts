@@ -1,7 +1,7 @@
 import useAuth from "@/store/auth";
 import * as XLSX from 'xlsx';
 
-export default async function PdtexcelService(num_id:number) {
+export default async function PdtexcelService(num_id:number, periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -22,7 +22,7 @@ export default async function PdtexcelService(num_id:number) {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'DataPDT.xlsx');
+    XLSX.writeFile(wb, 'DataPDT-'+periodo+'.xlsx');
   
 
 }

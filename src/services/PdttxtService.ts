@@ -3,8 +3,7 @@ import * as XLSX from 'xlsx';
 
 export default {
 
-  //Busqueda de personal para el registro de no abono
-  async fileid(num_id:number) {
+  async fileid(num_id:number,periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -25,11 +24,11 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'Archivo-IDE.xlsx');
+    XLSX.writeFile(wb, 'Archivo_IDE-'+periodo+'.xlsx');
   
   },
 
-  async filetra(num_id:number) {
+  async filetra(num_id:number,periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -50,11 +49,11 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'Archivo-TRA.xlsx');
+    XLSX.writeFile(wb, 'Archivo_TRA-'+periodo+'.xlsx');
   
   },
 
-  async fileest(num_id:number) {
+  async fileest(num_id:number,periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -75,11 +74,11 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'Archivo-EST.xlsx');
+    XLSX.writeFile(wb, 'Archivo_EST-'+periodo+'.xlsx');
   
   },
 
-  async fileedu(num_id:number) {
+  async fileedu(num_id:number,periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -100,11 +99,11 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'Archivo-EDU.xlsx');
+    XLSX.writeFile(wb, 'Archivo_EDU-'+periodo+'.xlsx');
   
   },
 
-  async fileper(num_id:number) {
+  async fileper(num_id:number,periodo:string) {
 
     let formData = new FormData()
     formData.append('num_id',num_id.toString())
@@ -125,7 +124,7 @@ export default {
     const ws = XLSX.utils.aoa_to_sheet(datatotal);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Data');
-    XLSX.writeFile(wb, 'Archivo-PER.xlsx');
+    XLSX.writeFile(wb, 'Archivo_PER-'+periodo+'.xlsx');
   
   },
 
