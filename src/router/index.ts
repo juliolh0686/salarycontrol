@@ -10,20 +10,13 @@ import NoabonosView from '@/views/NoabonosView.vue'
 import RepnoabonosView from '@/views/RepnoabonosView.vue'
 import AutorizaciondescuentoView from '@/views/AutorizaciondescuentoView.vue'
 import DeclaracionView from '@/views/DeclaracionView.vue'
+import ReporteconceptosView from '@/views/ReporteconceptosView.vue'
 import useAuth from '@/store/auth'
 
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: {
-        requireAuth: true
-      }
-    },
     {
       path: '/login',
       name: 'login',
@@ -41,7 +34,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/main',
+      path: '/',
       name: 'main',
       component: DashboardView,
       meta: {
@@ -92,6 +85,14 @@ const router = createRouter({
       path: '/declaracion',
       name: 'declaracion',
       component: DeclaracionView,
+      meta: {
+        requireAuth: true
+      }
+    },
+    {
+      path: '/reporteconceptos',
+      name: 'reporteconceptos',
+      component: ReporteconceptosView,
       meta: {
         requireAuth: true
       }

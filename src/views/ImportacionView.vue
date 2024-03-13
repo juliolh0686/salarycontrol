@@ -98,14 +98,32 @@
   }
 
   const submitFile002 = async() => {
-    
-    const response = await ImportService.import002activos(file002.value,tipocarga002.value);
 
-    if (response.status == false) {
-      console.log("Error en carga")
-    } else {
-      console.log("Satisfactorio")
+    try {
+
+      isVisible.value = true
+      loadingText.value = 'Importando Archivo ...'
+
+      const response = await ImportService.import002activos(file002.value,tipocarga002.value);
+
+      if (response.status == false) {
+        Swal.fire({
+          icon:'error',
+          html: response.message
+        })
+      } else {
+        Swal.fire({
+            icon:'success',
+            html: response.message+'</br>Bruto: '+response.totalbruto+'</br>Descuentos: '+response.totaldescuentos+'</br>Liquido: '+response.totalliquido+'</br>Aportes: '+response.totalessalud,
+          })
+      }
+      
+    } catch (error) {
+      alert('Error al obtener la respuesta: '+error)
+    }finally {
+      isVisible.value = false
     }
+    
 
   }
 

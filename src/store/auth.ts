@@ -8,7 +8,9 @@ const useAuth = defineStore('auth', {
       user : ''
     }
   },
-  persist:true,
+  persist: {
+    storage : sessionStorage,
+  },
   actions: {
     
     async register(name:string, email:string, password:string) {
@@ -18,7 +20,7 @@ const useAuth = defineStore('auth', {
         headers: {
           'Content-Type':'application/json',
           'Accept':'application/json'
-        },
+        },  
         body: JSON.stringify({
           'name': name,
           'email': email,

@@ -25,10 +25,10 @@
 <template>
   <div class="container">
     <div class="menu">
-      <MenuComponent v-if="route.path != '/login' && route.path != '/register' && route.path != '/'"/>
+      <MenuComponent v-if="route.path != '/login' && route.path != '/register'"/>
     </div>
     <div class="central">
-      <div class="navbar" v-if="route.path != '/login' && route.path != '/register' && route.path != '/'"></div>
+      <div class="navbar" v-if="route.path != '/login' && route.path != '/register'"></div>
         <RouterView/>
     </div>
     </div>

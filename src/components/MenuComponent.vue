@@ -9,10 +9,10 @@
       <li>
         <a href="#">
           <i class='bx bx-grid-alt' ></i>
-          <RouterLink to="/main"><span class="link_name">Dashboard</span></RouterLink>
+          <RouterLink to="/"><span class="link_name">Dashboard</span></RouterLink>
         </a>
         <ul class="sub-menu blank">
-          <li><RouterLink class="link_name" to="/main">Dashboard</RouterLink></li>
+          <li><RouterLink class="link_name" to="/">Dashboard</RouterLink></li>
         </ul>
       </li>
       <li>
@@ -60,13 +60,13 @@
         <div class="iocn-link">
           <a href="#">
             <i class='bx bx-book-alt' ></i>
-            <span class="link_name">Menu</span>
+            <span class="link_name">Reportes</span>
           </a>
           <i class='bx bxs-chevron-down arrow' ></i>
         </div>
         <ul class="sub-menu">
-          <li><a class="link_name" href="#">Menu</a></li>
-          <li><a href="#">Submenu</a></li>
+          <li><a class="link_name" href="#">Reportes</a></li>
+          <li><RouterLink to="/reporteconceptos">Por Conceptos</RouterLink></li>
           <li><a href="#">Submenu</a></li>
           <li><a href="#">Submenu</a></li>
         </ul>
@@ -124,7 +124,7 @@
       alert('error')
     } else {
       alert('ok')
-      router.push({name: 'home'})
+      router.push({name: 'login'})
     }
   }
 

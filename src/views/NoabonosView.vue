@@ -68,13 +68,13 @@
       <div class="modal-body">
         <div class="group-01">
           <label for="" class="label">Motivo</label>
-          <input type="text" class="form-control" id="" placeholder="Ingresar Motivo" v-model="dp_motivo_na">
+          <input type="text" class="inputj" id="" placeholder="Ingresar Motivo" v-model="dp_motivo_na">
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btnj btnj-primary" @click="cerrarmodal">Cerrar</button>
-        <button type="button" v-if="tipoAccion==1" class="btnj btnj-primary" @click="addNoabono()">Registrar</button>
-        <button type="button" v-if="tipoAccion==2" class="btnj btnj-primary" @click="removeNoabono()">Retirar</button>
+        <button class="btnj btnj-three" @click="cerrarmodal">Cerrar</button>
+        <button type="button" v-if="tipoAccion==1" class="btnj btnj-one" @click="addNoabono()">Registrar</button>
+        <button type="button" v-if="tipoAccion==2" class="btnj btnj-one" @click="removeNoabono()">Retirar</button>
       </div>
     </div>
   </div>

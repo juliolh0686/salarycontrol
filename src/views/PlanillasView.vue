@@ -31,13 +31,26 @@
         </tr>
       </tbody>
     </table>
+    <nav class="container-pagination">
+      <ul class="pagination">
+        <li class="page-item" v-if="pagination.current_page>1">
+            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page-1)">Anterior</a>
+        </li>
+          <li class="page-item" v-for="page in pagesNumber" :key="page" :class="[page == isActived ? 'active':'']">
+            <a class="page-link" href="#" @click.prevent="cambiarPagina(page)">{{ page }}</a>
+        </li>
+          <li class="page-item" v-if="pagination.current_page<pagination.last_page">
+            <a class="page-link" href="#" @click.prevent="cambiarPagina(pagination.current_page+1)">Siguiente</a>
+        </li>
+      </ul>
+    </nav>
   </div>
 
   <div id="myModal" class="modal">
     <div class="modal-content ancho-ventana30">
       <div class="modal-header">
         <span class="close" @click="cerrarmodal">&times;</span>
-        <h2>Formulario</h2>
+        <h2>Planilla</h2>
       </div>
       <div class="modal-body">
         <div class="group-01">
@@ -60,6 +73,30 @@
 
 <style lang="scss" scoped>
 
+
+.container-pagination {
+  margin-top: 20px;
+}
+.pagination {
+  display: flex;
+}
+
+.pagination .page-item .page-link {
+  text-decoration: none;
+  color: white;
+}
+
+.pagination .page-item {
+  background-color: #008CBA; 
+  margin-left: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  list-style: none;
+} 
+
+.pagination .active {
+  background-color: #07475c;
+}
 
 </style>
 
@@ -137,13 +174,13 @@
 
   const cambiarPagina = (page:number) => {
     pagination.value.current_page = page;
-    //getmostrarNoabono(page,selectCodperiodo.value);
+    listarPlanillas(page);
   }
 
 
-  const listarPlanillas = async() => {
+  const listarPlanillas = async(page:number) => {
 
-        const response = await PlanillaService.listarPlanillas();
+        const response = await PlanillaService.listarPlanillas(page);
 
         if (response.status == false) {
           alert(response.message)
@@ -156,7 +193,7 @@
   }
 
   onMounted(()=>{
-    listarPlanillas()
+    listarPlanillas(1)
   })
 
 </script>
