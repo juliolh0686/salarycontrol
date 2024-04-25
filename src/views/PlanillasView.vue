@@ -27,7 +27,10 @@
           <td class="text-right">{{ planillas.pll_essalud }}</td>
           <td>{{ planillas.pll_descripcion }}</td>
           <td>{{ planillas.estado_planilla_ep_id }}</td>
-          <td> <button class="btnj btnj-one"><i class='bx bxs-edit image-button'></i></button><button class="btnj btnj-two"><i class='bx bxs-trash'></i></button> </td>
+          <td>
+            <button class="btnj btnj-one"><i class='bx bxs-edit image-button'></i></button>
+            <button class="btnj btnj-two" @click="deletePlanilla(planillas.pll_id)"><i class='bx bxs-trash'></i></button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -55,15 +58,15 @@
       <div class="modal-body">
         <div class="group-01">
           <label for="" class="label">Periodo</label>
-          <input type="text" class="inputj" id="" placeholder="Ingresar Periodo">
+          <input type="text" class="inputj" id="" v-model="planilla.periodo" placeholder="Ingresar Periodo">
         </div>
         <div class="group-01">
           <label for="" class="label">Descripción de Planilla</label>
-          <input type="email" class="inputj" placeholder="Ingresar Descripción">
+          <input type="email" class="inputj" v-model="planilla.descripcion" placeholder="Ingresar Descripción">
         </div>
       </div>
       <div class="modal-footer">
-        <button id="submitBtn" class="btnj btnj-one">Enviar</button>
+        <button id="submitBtn" class="btnj btnj-one" @click='createPlanilla(planilla.periodo,planilla.descripcion)'>Registrar</button>
         <button class="btnj btnj-two" @click="cerrarmodal">Cerrar</button>
       </div>
     </div>
@@ -103,6 +106,13 @@
 <script setup lang="ts">
   import {ref, onMounted, computed} from 'vue'
   import PlanillaService from '@/services/PlanillaService'
+  import Swal from 'sweetalert2'
+
+  let planilla = ref ({
+    periodo:'',
+    descripcion:''
+  },  
+  )
 
   let pagination = ref(
     {
@@ -113,10 +123,10 @@
     'from': 0,
     'to': 0
   }
-  ) 
+  )
 
   let dataPlanillas = ref([{
-    pll_id :'',
+    pll_id :0,
     pll_periodo : '',
     pll_bruto : '',
     pll_desc : '',
@@ -129,6 +139,8 @@
   const cerrarmodal = () => {
     const modal = document.getElementById("myModal") as HTMLDivElement;
     modal.classList.remove("active")
+    planilla.value.periodo = ''
+    planilla.value.descripcion = ''
   }
 
   const Abrirmodal = () => {
@@ -189,6 +201,60 @@
 
           pagination.value = response.pagination
         }
+  }
+
+  const createPlanilla = async(periodo:string,descripcion:string) => {
+
+    const response = await PlanillaService.createPlanilla(periodo,descripcion);
+
+    if (response.status == false) {
+      Swal.fire({
+        icon:'error',
+        html: response.message,
+      })
+    }else{
+      cerrarmodal()
+      Swal.fire({
+        icon:'success',
+        html: response.message,
+      })
+      planilla.value.periodo = ''
+      planilla.value.descripcion = ''
+      listarPlanillas(1)
+    }
+
+  }
+
+  const deletePlanilla = async(id:number) => {
+
+    Swal.fire({
+      title: "¿Estas seguro?",
+      text: "¡No podrás revertir esto!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "¡Sí, Eliminar!"
+    }).then(async(result) => {
+      if (result.isConfirmed) {
+        
+        const response = await PlanillaService.deletePlanilla(id)
+
+        if(response.status == false) {
+          Swal.fire({
+            icon:'error',
+            html: response.message
+          })
+        }else {
+          Swal.fire({
+            icon:'success',
+            html: response.message
+          })
+          listarPlanillas(1)
+        }
+    
+      }
+    });
 
   }
 

@@ -120,7 +120,7 @@ import useAuth from "@/store/auth";
 
     //Texto encabezad
     let width = doc.internal.pageSize.getWidth()
-    doc.setFontSize(12);
+    doc.setFontSize(10);
     doc.setFont("Arial", "bold");
     doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
     doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
@@ -140,14 +140,14 @@ import useAuth from "@/store/auth";
 
     doc.addPage("l");
 
-    doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
-    doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
-    doc.text('RESUMEN DE LOS NO ABONOS POR SECUENCIA FUNCIONAL Y METAS', width/2, 29, { align: 'center' })
+    // doc.text('UNIDAD DE GESTIÓN EDUCATIVA LOCAL N°07 - SAN BORJA', width/2, 15, { align: 'center' })
+    // doc.text('ANULACIÓN DE ABONOS - CONCEPTOS QUE DEBEN SER REBAJADOS - '+response.planilla.pll_descripcion, width/2, 22, { align: 'center' })
+    // doc.text('RESUMEN DE LOS NO ABONOS POR SECUENCIA FUNCIONAL Y METAS', width/2, 29, { align: 'center' })
     doc.setFontSize(10);
-    doc.text('REMUNERACIÓN', 48, 43, { align: 'center' })
-    doc.text('SISTEMA PRIVADO DE PENSIONES', 114, 43, { align: 'center' })
-    doc.text('SISTEMA NACIONAL DE PENSIONES', 182, 43, { align: 'center' })
-    doc.text('ESSALUD', 248, 43, { align: 'center' })
+    doc.text('REMUNERACIÓN', 48, 10, { align: 'center' })
+    doc.text('SISTEMA PRIVADO DE PENSIONES', 114, 10, { align: 'center' })
+    doc.text('SISTEMA NACIONAL DE PENSIONES', 182, 10, { align: 'center' })
+    doc.text('ESSALUD', 248, 10, { align: 'center' })
 
     
     //let pageWidth = doc.internal.pageSize.width
@@ -187,8 +187,8 @@ import useAuth from "@/store/auth";
 
 
     autoTable(doc, {
-      startY:48,
-      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
+      startY:15,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -225,8 +225,8 @@ import useAuth from "@/store/auth";
     dataFootafp[0].push(totalAfp.toFixed(2))
 
     autoTable(doc, {
-      startY:48,
-      styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
+      startY:15,
+      styles: { fontSize: 4 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       footStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -262,8 +262,8 @@ import useAuth from "@/store/auth";
 
     dataFootonp[0].push(totalOnp.toFixed(2))
 
-    autoTable(doc, {
-      startY:48,
+    autoTable(doc, {  
+      startY:15,
       styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
@@ -301,7 +301,7 @@ import useAuth from "@/store/auth";
      dataFootessalud[0].push(totalEssalud.toFixed(2))
 
     autoTable(doc, {
-      startY:48,
+      startY:15,
       styles: { fontSize: 6 ,halign: 'center',valign: 'middle'},
       headStyles: {fillColor: [250, 250, 250],lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},
       bodyStyles: {lineWidth:0.1,lineColor:[170, 170, 170],textColor: [42, 42, 42]},

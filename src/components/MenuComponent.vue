@@ -17,6 +17,15 @@
       </li>
       <li>
         <a href="#">
+          <i class='bx bxs-bank'></i>
+          <RouterLink to="/giradossiaf"><span class="link_name">Depositos</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink class="link_name" to="/giradossiaf">Depositos</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
           <i class='bx bxs-business' ></i>
           <RouterLink to="/autorizaciondesc"><span class="link_name">Autorización de Descuentos</span></RouterLink>
         </a>
@@ -40,6 +49,15 @@
         </a>
         <ul class="sub-menu blank">
           <li><RouterLink to="/importacion" class="link_name">Importación</RouterLink></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bxs-file-import'></i>
+          <RouterLink to="/importsiaf"><span class="link_name">Importación SIAF</span></RouterLink>
+        </a>
+        <ul class="sub-menu blank">
+          <li><RouterLink to="/importsiaf" class="link_name">Importación SIAF</RouterLink></li>
         </ul>
       </li>
       <li>
