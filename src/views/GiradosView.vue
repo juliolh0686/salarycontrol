@@ -117,8 +117,30 @@ li {
   }
   ) 
 
-  let lista_personal = ref([])
-  let datos_personales = ref([])
+  let lista_personal = ref([
+    {
+      'pm_id':'',
+      'pm_anio':'',
+      'pm_mes':'',
+      'ed_expediente':'',
+      'pm_tipoplanilla':'',
+      'pm_claseplanilla':'',
+      'pm_correlativo':'',
+      'pm_ticket':'',
+      'pm_montoneto':'',
+      'pm_banco':'',
+      'pm_cuenta':'',
+      'detalledoc':[{
+        'ded_id':'',
+        'ded_fase':'',
+        'ded_fech_doc':''
+      }]
+    }
+
+  ])
+  let datos_personales = ref(
+    {'pp_nombre':''}
+  )
 
   const offset = ref(3);
 
@@ -165,7 +187,7 @@ li {
   const listarDepositos = async(page:number,dni:string) => {
     
     lista_personal.value = [];
-    datos_personales.value = [];
+    datos_personales.value.pp_nombre = '';
 
       const response = await DepositosService.mostrarDepositos(page,dni);
 
