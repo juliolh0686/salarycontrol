@@ -1,7 +1,7 @@
 <template>
   <div class="navbar-central">
   <div>
-    <div class="titulo-central">No Abonos - Reportes</div>
+    <div class="titulo-central">Depositos SIAF</div>
     <div class="container-from-search">
       <div>
         <label>DNI:</label>
