@@ -12,7 +12,7 @@
       <div>
         <button class="btnj btnj-one" @click="listarDepositos(0,consulta_dni)">Buscar</button>
       </div>
-      <div class="text-name">Apellidos y Nombres: <u>{{ datos_personales.pp_nombre }}</u></div>
+      <div class="text-name">Apellidos y Nombres: <u>{{ pp_nombre }}</u></div>
     </div>
     <table>
       <thead>
@@ -138,9 +138,8 @@ li {
     }
 
   ])
-  let datos_personales = ref(
-    {'pp_nombre':''}
-  )
+
+  let pp_nombre = ref('')
 
   const offset = ref(3);
 
@@ -184,7 +183,7 @@ li {
   const listarDepositos = async(page:number,dni:string) => {
     
     lista_personal.value = [];
-    datos_personales.value.pp_nombre = '';
+    pp_nombre.value = '';
 
       const response = await DepositosService.mostrarDepositos(page,dni);
 
@@ -192,7 +191,7 @@ li {
         alert(response.message)
       } else {
         lista_personal.value = response.listado_personal.data
-        datos_personales.value = response.datos_personales
+        pp_nombre.value = response.datos_personales.pp_nombre
         pagination.value = response.pagination
       }
 
