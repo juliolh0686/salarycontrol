@@ -175,9 +175,6 @@ li {
       return pagesArray;
     });
 
-
-
-
   const cambiarPagina = (page:number) => {
     pagination.value.current_page = page;
     listarDepositos(page,consulta_dni.value);
