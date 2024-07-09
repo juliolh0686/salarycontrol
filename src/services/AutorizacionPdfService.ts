@@ -22,8 +22,7 @@ import useAuth from "@/store/auth";
     let dataConceptos = response.dataconceptos
 
     let encabezadoDescuentos = []
-    let montoBrutopersona = 0;
-
+  
     for (const item in dataConceptos) {
       encabezadoDescuentos.push(dataConceptos[item].con_concepto+' '+dataConceptos[item].con_nombre)
     }
@@ -42,6 +41,7 @@ import useAuth from "@/store/auth";
       let suma_ley_judicial=0;
       let suma_terceros=0;
       let suma_sindical=0;
+      let montoBrutopersona = 0;
 
       let dataobjeto = []
       dataobjeto.push(parseInt(item)+1)
